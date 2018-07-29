@@ -15,6 +15,8 @@
 		4A380E4F210A5F5A00742B1F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A380E4D210A5F5A00742B1F /* LaunchScreen.storyboard */; };
 		4A380E5A210A5F5A00742B1F /* iTunesSearchAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E59210A5F5A00742B1F /* iTunesSearchAppTests.swift */; };
 		4A380E65210A5F5A00742B1F /* iTunesSearchAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E64210A5F5A00742B1F /* iTunesSearchAppUITests.swift */; };
+		4A380E74210DC65B00742B1F /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E73210DC65B00742B1F /* GCDBlackBox.swift */; };
+		4A380E78210DC77A00742B1F /* DataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E77210DC77A00742B1F /* DataController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +51,8 @@
 		4A380E60210A5F5A00742B1F /* iTunesSearchAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTunesSearchAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A380E64210A5F5A00742B1F /* iTunesSearchAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesSearchAppUITests.swift; sourceTree = "<group>"; };
 		4A380E66210A5F5A00742B1F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4A380E73210DC65B00742B1F /* GCDBlackBox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
+		4A380E77210DC77A00742B1F /* DataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,12 +104,12 @@
 			isa = PBXGroup;
 			children = (
 				4A380E41210A5F5900742B1F /* AppDelegate.swift */,
-				4A380E43210A5F5900742B1F /* ViewController.swift */,
-				4A380E45210A5F5900742B1F /* Main.storyboard */,
-				4A380E4B210A5F5A00742B1F /* Assets.xcassets */,
-				4A380E4D210A5F5A00742B1F /* LaunchScreen.storyboard */,
-				4A380E50210A5F5A00742B1F /* Info.plist */,
-				4A380E48210A5F5900742B1F /* iTunesSearchApp.xcdatamodeld */,
+				4A380E72210DC5BC00742B1F /* Assets */,
+				4A380E73210DC65B00742B1F /* GCDBlackBox.swift */,
+				4A380E76210DC71300742B1F /* Model */,
+				4A380E7A210DC7C900742B1F /* Storyboards */,
+				4A380E7B210DC81900742B1F /* View Controllers */,
+				4A380E75210DC68D00742B1F /* Supporting Files */,
 			);
 			path = iTunesSearchApp;
 			sourceTree = "<group>";
@@ -126,6 +130,56 @@
 				4A380E66210A5F5A00742B1F /* Info.plist */,
 			);
 			path = iTunesSearchAppUITests;
+			sourceTree = "<group>";
+		};
+		4A380E72210DC5BC00742B1F /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				4A380E4B210A5F5A00742B1F /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		4A380E75210DC68D00742B1F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				4A380E50210A5F5A00742B1F /* Info.plist */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		4A380E76210DC71300742B1F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				4A380E79210DC78F00742B1F /* Client */,
+				4A380E77210DC77A00742B1F /* DataController.swift */,
+				4A380E48210A5F5900742B1F /* iTunesSearchApp.xcdatamodeld */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		4A380E79210DC78F00742B1F /* Client */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Client;
+			sourceTree = "<group>";
+		};
+		4A380E7A210DC7C900742B1F /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				4A380E4D210A5F5A00742B1F /* LaunchScreen.storyboard */,
+				4A380E45210A5F5900742B1F /* Main.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		4A380E7B210DC81900742B1F /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4A380E43210A5F5900742B1F /* ViewController.swift */,
+			);
+			path = "View Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -259,6 +313,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A380E78210DC77A00742B1F /* DataController.swift in Sources */,
+				4A380E74210DC65B00742B1F /* GCDBlackBox.swift in Sources */,
 				4A380E44210A5F5900742B1F /* ViewController.swift in Sources */,
 				4A380E4A210A5F5900742B1F /* iTunesSearchApp.xcdatamodeld in Sources */,
 				4A380E42210A5F5900742B1F /* AppDelegate.swift in Sources */,
