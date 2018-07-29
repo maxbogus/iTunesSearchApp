@@ -108,8 +108,8 @@
 				4A380E73210DC65B00742B1F /* GCDBlackBox.swift */,
 				4A380E76210DC71300742B1F /* Model */,
 				4A380E7A210DC7C900742B1F /* Storyboards */,
-				4A380E7B210DC81900742B1F /* View Controllers */,
 				4A380E75210DC68D00742B1F /* Supporting Files */,
+				4A380E7B210DC81900742B1F /* View Controllers */,
 			);
 			path = iTunesSearchApp;
 			sourceTree = "<group>";
