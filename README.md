@@ -1,6 +1,9 @@
 # iTunesSearchApp
 Interface for iTunesSearch app.
 
+## Application base
+Application is based on iTunes Search API: https://affiliate.itunes.apple.com/resources/documentation/itunes-store-web-service-search-api/
+
 ## Requirements for this project
 
 ### Main screen
