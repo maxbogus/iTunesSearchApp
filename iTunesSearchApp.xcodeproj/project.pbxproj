@@ -106,6 +106,7 @@
 				4A380E41210A5F5900742B1F /* AppDelegate.swift */,
 				4A380E72210DC5BC00742B1F /* Assets */,
 				4A380E73210DC65B00742B1F /* GCDBlackBox.swift */,
+				4A380E50210A5F5A00742B1F /* Info.plist */,
 				4A380E76210DC71300742B1F /* Model */,
 				4A380E7A210DC7C900742B1F /* Storyboards */,
 				4A380E75210DC68D00742B1F /* Supporting Files */,
@@ -143,7 +144,6 @@
 		4A380E75210DC68D00742B1F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				4A380E50210A5F5A00742B1F /* Info.plist */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
