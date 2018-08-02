@@ -10,5 +10,7 @@ import Foundation
 import UIKit
 
 class SearchResultsViewCellController: UICollectionViewCell {
-    
+    @IBOutlet var image: UIImageView!
+    @IBOutlet var descriptionLabel: UILabel!
+
 }

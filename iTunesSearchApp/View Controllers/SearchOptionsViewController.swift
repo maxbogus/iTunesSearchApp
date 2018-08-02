@@ -10,6 +10,13 @@ import Foundation
 import UIKit
 
 class SearchOptionsViewController: UIViewController {
+    @IBOutlet var countryList: UITableView!
+    @IBOutlet var explicitOption: UISwitch!
+    @IBOutlet var limitResults: UITextField!
+    @IBOutlet var searchButton: UIButton!
+    
+    @IBAction func searchAction(_ sender: Any) {
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
