@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4A380E42210A5F5900742B1F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E41210A5F5900742B1F /* AppDelegate.swift */; };
-		4A380E44210A5F5900742B1F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E43210A5F5900742B1F /* ViewController.swift */; };
+		4A380E44210A5F5900742B1F /* MainScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E43210A5F5900742B1F /* MainScreenViewController.swift */; };
 		4A380E47210A5F5900742B1F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A380E45210A5F5900742B1F /* Main.storyboard */; };
 		4A380E4A210A5F5900742B1F /* iTunesSearchApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E48210A5F5900742B1F /* iTunesSearchApp.xcdatamodeld */; };
 		4A380E4C210A5F5A00742B1F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A380E4B210A5F5A00742B1F /* Assets.xcassets */; };
@@ -20,6 +20,11 @@
 		4A380E7D21110F4600742B1F /* iTunesClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E7C21110F4600742B1F /* iTunesClient.swift */; };
 		4A380E7F21110F6100742B1F /* iTunesConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E7E21110F6100742B1F /* iTunesConstants.swift */; };
 		4A380E8121110F7500742B1F /* iTunesConvenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E8021110F7500742B1F /* iTunesConvenience.swift */; };
+		4A380E832113A17E00742B1F /* SongInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E822113A17E00742B1F /* SongInfoViewController.swift */; };
+		4A380E852113A19F00742B1F /* SearchOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E842113A19F00742B1F /* SearchOptionsViewController.swift */; };
+		4A380E872113A1C100742B1F /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E862113A1C100742B1F /* SearchResultsViewController.swift */; };
+		4A380E892113A1E900742B1F /* PreviousResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E882113A1E900742B1F /* PreviousResultsViewController.swift */; };
+		4A380E8B2113A37C00742B1F /* SearchResultsViewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E8A2113A37C00742B1F /* SearchResultsViewCellController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,7 +47,7 @@
 /* Begin PBXFileReference section */
 		4A380E3E210A5F5900742B1F /* iTunesSearchApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTunesSearchApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A380E41210A5F5900742B1F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		4A380E43210A5F5900742B1F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4A380E43210A5F5900742B1F /* MainScreenViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainScreenViewController.swift; sourceTree = "<group>"; };
 		4A380E46210A5F5900742B1F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		4A380E49210A5F5900742B1F /* iTunesSearchApp.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = iTunesSearchApp.xcdatamodel; sourceTree = "<group>"; };
 		4A380E4B210A5F5A00742B1F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -59,6 +64,11 @@
 		4A380E7C21110F4600742B1F /* iTunesClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesClient.swift; sourceTree = "<group>"; };
 		4A380E7E21110F6100742B1F /* iTunesConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesConstants.swift; sourceTree = "<group>"; };
 		4A380E8021110F7500742B1F /* iTunesConvenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesConvenience.swift; sourceTree = "<group>"; };
+		4A380E822113A17E00742B1F /* SongInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongInfoViewController.swift; sourceTree = "<group>"; };
+		4A380E842113A19F00742B1F /* SearchOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchOptionsViewController.swift; sourceTree = "<group>"; };
+		4A380E862113A1C100742B1F /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
+		4A380E882113A1E900742B1F /* PreviousResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousResultsViewController.swift; sourceTree = "<group>"; };
+		4A380E8A2113A37C00742B1F /* SearchResultsViewCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewCellController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -186,7 +196,12 @@
 		4A380E7B210DC81900742B1F /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4A380E43210A5F5900742B1F /* ViewController.swift */,
+				4A380E43210A5F5900742B1F /* MainScreenViewController.swift */,
+				4A380E822113A17E00742B1F /* SongInfoViewController.swift */,
+				4A380E842113A19F00742B1F /* SearchOptionsViewController.swift */,
+				4A380E862113A1C100742B1F /* SearchResultsViewController.swift */,
+				4A380E882113A1E900742B1F /* PreviousResultsViewController.swift */,
+				4A380E8A2113A37C00742B1F /* SearchResultsViewCellController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -322,13 +337,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A380E892113A1E900742B1F /* PreviousResultsViewController.swift in Sources */,
 				4A380E7F21110F6100742B1F /* iTunesConstants.swift in Sources */,
+				4A380E832113A17E00742B1F /* SongInfoViewController.swift in Sources */,
 				4A380E78210DC77A00742B1F /* DataController.swift in Sources */,
+				4A380E872113A1C100742B1F /* SearchResultsViewController.swift in Sources */,
+				4A380E852113A19F00742B1F /* SearchOptionsViewController.swift in Sources */,
 				4A380E74210DC65B00742B1F /* GCDBlackBox.swift in Sources */,
-				4A380E44210A5F5900742B1F /* ViewController.swift in Sources */,
+				4A380E44210A5F5900742B1F /* MainScreenViewController.swift in Sources */,
 				4A380E4A210A5F5900742B1F /* iTunesSearchApp.xcdatamodeld in Sources */,
 				4A380E7D21110F4600742B1F /* iTunesClient.swift in Sources */,
 				4A380E42210A5F5900742B1F /* AppDelegate.swift in Sources */,
+				4A380E8B2113A37C00742B1F /* SearchResultsViewCellController.swift in Sources */,
 				4A380E8121110F7500742B1F /* iTunesConvenience.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

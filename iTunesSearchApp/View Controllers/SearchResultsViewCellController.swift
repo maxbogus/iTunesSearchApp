@@ -1,0 +1,14 @@
+//
+//  SearchResultsViewCellController.swift
+//  iTunesSearchApp
+//
+//  Created by Max Boguslavskiy on 02/08/2018.
+//  Copyright © 2018 Max Boguslavskiy. All rights reserved.
+//
+
+import Foundation
+import UIKit
+
+class SearchResultsViewCellController: UICollectionViewCell {
+    
+}
