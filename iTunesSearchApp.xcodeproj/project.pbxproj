@@ -197,11 +197,11 @@
 			isa = PBXGroup;
 			children = (
 				4A380E43210A5F5900742B1F /* MainScreenViewController.swift */,
-				4A380E822113A17E00742B1F /* SongInfoViewController.swift */,
-				4A380E842113A19F00742B1F /* SearchOptionsViewController.swift */,
-				4A380E862113A1C100742B1F /* SearchResultsViewController.swift */,
 				4A380E882113A1E900742B1F /* PreviousResultsViewController.swift */,
+				4A380E842113A19F00742B1F /* SearchOptionsViewController.swift */,
 				4A380E8A2113A37C00742B1F /* SearchResultsViewCellController.swift */,
+				4A380E862113A1C100742B1F /* SearchResultsViewController.swift */,
+				4A380E822113A17E00742B1F /* SongInfoViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
