@@ -114,11 +114,5 @@ class iTunesClient : NSObject {
     }
     
     // MARK: Shared Instance
-    
-    class func sharedInstance() -> iTunesClient {
-        struct Singleton {
-            static var sharedInstance = iTunesClient()
-        }
-        return Singleton.sharedInstance
-    }
+    static let sharedInstance = iTunesClient()
 }
