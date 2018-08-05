@@ -25,6 +25,7 @@
 		4A380E872113A1C100742B1F /* SearchResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E862113A1C100742B1F /* SearchResultsViewController.swift */; };
 		4A380E892113A1E900742B1F /* PreviousResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E882113A1E900742B1F /* PreviousResultsViewController.swift */; };
 		4A380E8B2113A37C00742B1F /* SearchResultsViewCellController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A380E8A2113A37C00742B1F /* SearchResultsViewCellController.swift */; };
+		4A92F6252117ADC200E67B70 /* iTunesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A92F6242117ADC200E67B70 /* iTunesResult.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +70,7 @@
 		4A380E862113A1C100742B1F /* SearchResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewController.swift; sourceTree = "<group>"; };
 		4A380E882113A1E900742B1F /* PreviousResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviousResultsViewController.swift; sourceTree = "<group>"; };
 		4A380E8A2113A37C00742B1F /* SearchResultsViewCellController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultsViewCellController.swift; sourceTree = "<group>"; };
+		4A92F6242117ADC200E67B70 /* iTunesResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesResult.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,6 +172,7 @@
 				4A380E79210DC78F00742B1F /* Client */,
 				4A380E77210DC77A00742B1F /* DataController.swift */,
 				4A380E48210A5F5900742B1F /* iTunesSearchApp.xcdatamodeld */,
+				4A92F6242117ADC200E67B70 /* iTunesResult.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 				4A380E7F21110F6100742B1F /* iTunesConstants.swift in Sources */,
 				4A380E832113A17E00742B1F /* SongInfoViewController.swift in Sources */,
 				4A380E78210DC77A00742B1F /* DataController.swift in Sources */,
+				4A92F6252117ADC200E67B70 /* iTunesResult.swift in Sources */,
 				4A380E872113A1C100742B1F /* SearchResultsViewController.swift in Sources */,
 				4A380E852113A19F00742B1F /* SearchOptionsViewController.swift in Sources */,
 				4A380E74210DC65B00742B1F /* GCDBlackBox.swift in Sources */,
