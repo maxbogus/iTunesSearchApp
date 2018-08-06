@@ -19,6 +19,8 @@ extension iTunesClient {
     
     // MARK: iTunes Parameter Keys
     struct iTunesParameterKeys {
+        static let Search = "search"
+        static let Lookup = "search"
         static let Term = "term"
         static let Country = "country"
         static let Media = "media"

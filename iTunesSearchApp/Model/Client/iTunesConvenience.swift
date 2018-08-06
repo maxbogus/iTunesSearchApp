@@ -14,12 +14,13 @@ import Foundation
 extension iTunesClient {
     
     // MARK: Search media by params (GET) Methods
-    func searchByParams(term: Double, limit: Int, completionHandlerForSession: @escaping (_ success: Bool, _ resultsDictionary: NSDictionary?, _ totalPages: Int?, _ errorString: String?) -> Void) {
+    func searchByParams(term: String, limit: Int, completionHandlerForSession: @escaping (_ success: Bool, _ resultsDictionary: NSDictionary?, _ totalPages: Int?, _ errorString: String?) -> Void) {
         let methodParameters = [
+            iTunesParameterKeys.Term: term as Any,
             iTunesParameterKeys.Lang: iTunesParameterValues.Lang,
-            iTunesParameterKeys.Limit: iTunesParameterValues.Limit,
-        ]
-        let _ = taskForGETMethod(parameters: methodParameters as [String : AnyObject]) { (results, error) in
+            iTunesParameterKeys.Limit: limit as Any,
+            ]
+        let _ = taskForGETMethod("search", parameters: methodParameters as [String : AnyObject]) { (results, error) in
             
             /* 3. Send the desired value(s) to completion handler */
             if error != nil {
@@ -36,12 +37,13 @@ extension iTunesClient {
     }
     
     // MARK: Lookup by params (GET) Methods
-    func lookupByParams(term: Double, limit: Int, completionHandlerForSession: @escaping (_ success: Bool, _ resultsDictionary: NSDictionary?, _ totalPages: Int?, _ errorString: String?) -> Void) {
+    func lookupByParams(term: String, limit: Int, completionHandlerForSession: @escaping (_ success: Bool, _ resultsDictionary: NSDictionary?, _ totalPages: Int?, _ errorString: String?) -> Void) {
         let methodParameters = [
+            iTunesParameterKeys.Term: term as Any,
             iTunesParameterKeys.Lang: iTunesParameterValues.Lang,
-            iTunesParameterKeys.Limit: iTunesParameterValues.Limit,
-        ]
-        let _ = taskForGETMethod(parameters: methodParameters as [String : AnyObject]) { (results, error) in
+            iTunesParameterKeys.Limit: limit as Any,
+            ]
+        let _ = taskForGETMethod("lookup", parameters: methodParameters as [String : AnyObject]) { (results, error) in
             
             /* 3. Send the desired value(s) to completion handler */
             if error != nil {

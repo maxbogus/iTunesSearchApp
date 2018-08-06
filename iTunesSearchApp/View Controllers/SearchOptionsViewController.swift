@@ -16,6 +16,16 @@ class SearchOptionsViewController: UIViewController {
     @IBOutlet var searchButton: UIButton!
     
     @IBAction func searchAction(_ sender: Any) {
+        iTunesClient.sharedInstance.searchByParams(term: "john", limit: 25) { (completed, results, resultsCount, error) in
+            if completed {
+                if let results = results, let count = resultsCount {
+                    print(results)
+                    print(count)
+                }
+            } else {
+                print(error as Any)
+            }
+        }
     }
 }
 
