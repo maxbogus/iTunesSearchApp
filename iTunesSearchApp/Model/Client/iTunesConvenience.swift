@@ -14,7 +14,7 @@ import Foundation
 extension iTunesClient {
     
     // MARK: Search media by params (GET) Methods
-    func searchByParams(latitude: Double, longitude: Double, pageNumber: Int, completionHandlerForSession: @escaping (_ success: Bool, _ photosArray: [[String: AnyObject]]?, _ totalPages: Int?, _ errorString: String?) -> Void) {
+    func searchByParams(term: Double, limit: Int, completionHandlerForSession: @escaping (_ success: Bool, _ resultsDictionary: NSDictionary?, _ totalPages: Int?, _ errorString: String?) -> Void) {
         let methodParameters = [
             iTunesParameterKeys.Lang: iTunesParameterValues.Lang,
             iTunesParameterKeys.Limit: iTunesParameterValues.Limit,
@@ -25,23 +25,18 @@ extension iTunesClient {
             if error != nil {
                 completionHandlerForSession(false, nil, nil, "Search failed.")
             } else {
-                if let photosDictionary = results?[iTunesResponseKeys.Photos] as? NSDictionary {
-                    if let photosArray = photosDictionary[iTunesResponseKeys.Photo] as? [[String: AnyObject]], let totalPages = photosDictionary[iTunesResponseKeys.Pages] as? Int {
-                        completionHandlerForSession(true, photosArray, totalPages, nil)
-                    } else {
-                        print("Could not find \(iTunesResponseKeys.Photo) in \(results!)")
-                        completionHandlerForSession(false, nil, nil, "Get photo array failed.")
-                    }
+                if let resultsDictionary = results?[iTunesResponseKeys.Results] as? NSDictionary, let totalPages = results?[iTunesResponseKeys.ResultsCount] as? Int {
+                    completionHandlerForSession(true, resultsDictionary, totalPages, nil)
                 } else {
-                    print("Could not find \(iTunesResponseKeys.Photos) in \(results!)")
-                    completionHandlerForSession(false, nil, nil, "Get photos dictionary failed.")
+                    print("Could not find \(iTunesResponseKeys.Results) in \(results!)")
+                    completionHandlerForSession(false, nil, nil, "Get results dictionary failed.")
                 }
             }
         }
     }
     
     // MARK: Lookup by params (GET) Methods
-    func lookupByParams(latitude: Double, longitude: Double, pageNumber: Int, completionHandlerForSession: @escaping (_ success: Bool, _ photosArray: [[String: AnyObject]]?, _ totalPages: Int?, _ errorString: String?) -> Void) {
+    func lookupByParams(term: Double, limit: Int, completionHandlerForSession: @escaping (_ success: Bool, _ resultsDictionary: NSDictionary?, _ totalPages: Int?, _ errorString: String?) -> Void) {
         let methodParameters = [
             iTunesParameterKeys.Lang: iTunesParameterValues.Lang,
             iTunesParameterKeys.Limit: iTunesParameterValues.Limit,
@@ -52,16 +47,11 @@ extension iTunesClient {
             if error != nil {
                 completionHandlerForSession(false, nil, nil, "Search failed.")
             } else {
-                if let photosDictionary = results?[iTunesResponseKeys.Photos] as? NSDictionary {
-                    if let photosArray = photosDictionary[iTunesResponseKeys.Photo] as? [[String: AnyObject]], let totalPages = photosDictionary[iTunesResponseKeys.Pages] as? Int {
-                        completionHandlerForSession(true, photosArray, totalPages, nil)
-                    } else {
-                        print("Could not find \(iTunesResponseKeys.Photo) in \(results!)")
-                        completionHandlerForSession(false, nil, nil, "Get photo array failed.")
-                    }
+                if let resultsDictionary = results?[iTunesResponseKeys.Results] as? NSDictionary, let totalPages = results?[iTunesResponseKeys.ResultsCount] as? Int {
+                    completionHandlerForSession(true, resultsDictionary, totalPages, nil)
                 } else {
-                    print("Could not find \(iTunesResponseKeys.Photos) in \(results!)")
-                    completionHandlerForSession(false, nil, nil, "Get photos dictionary failed.")
+                    print("Could not find \(iTunesResponseKeys.Results) in \(results!)")
+                    completionHandlerForSession(false, nil, nil, "Get results dictionary failed.")
                 }
             }
         }

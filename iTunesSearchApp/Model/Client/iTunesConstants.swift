@@ -45,6 +45,8 @@ extension iTunesClient {
     
     // MARK: iTunes Response Keys
     struct iTunesResponseKeys {
+        static let Results = "results"
+        static let ResultsCount = "resultCount"
         static let Wrapper = "wrapperType"
         static let Kind = "kind"
         static let ArtistId = "artistId"
