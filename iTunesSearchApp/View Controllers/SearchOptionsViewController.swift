@@ -14,16 +14,23 @@ class SearchOptionsViewController: UIViewController {
     @IBOutlet var explicitOption: UISwitch!
     @IBOutlet var limitResults: UITextField!
     @IBOutlet var searchButton: UIButton!
+    @IBOutlet var termInput: UITextField!
     
     @IBAction func searchAction(_ sender: Any) {
-        iTunesClient.sharedInstance.searchByParams(term: "john", limit: 25) { (completed, results, resultsCount, error) in
+        iTunesClient.sharedInstance.searchByParams(term: "john", limit: 25, explicitness: true) { (completed, results, resultsCount, error) in
             if completed {
                 if let results = results, let count = resultsCount {
                     print(results)
                     print(count)
                 }
             } else {
-                print(error as Any)
+                let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: UIAlertControllerStyle.alert)
+                
+                // add an action (button)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                
+                // show the alert
+                self.present(alert, animated: true, completion: nil)
             }
         }
     }

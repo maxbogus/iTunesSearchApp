@@ -14,9 +14,10 @@ import Foundation
 extension iTunesClient {
     
     // MARK: Search media by params (GET) Methods
-    func searchByParams(term: String, limit: Int, completionHandlerForSession: @escaping (_ success: Bool, _ resultsDictionary: [[String:AnyObject]]?, _ totalPages: Int?, _ errorString: String?) -> Void) {
+    func searchByParams(term: String, limit: Int, explicitness: Bool, completionHandlerForSession: @escaping (_ success: Bool, _ resultsDictionary: [[String:AnyObject]]?, _ totalPages: Int?, _ errorString: String?) -> Void) {
         let methodParameters = [
             iTunesParameterKeys.Term: term as Any,
+            iTunesParameterKeys.Explicit: (explicitness) ? "Yes" : "No",
             iTunesParameterKeys.Lang: iTunesParameterValues.Lang,
             iTunesParameterKeys.Limit: limit as Any,
             ]

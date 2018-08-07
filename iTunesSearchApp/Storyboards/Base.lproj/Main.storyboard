@@ -216,7 +216,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="decimalPad" returnKeyType="done" enablesReturnKeyAutomatically="YES"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter search term" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1mH-sk-W2L">
                                 <rect key="frame" x="51" y="79" width="289" height="30"/>
@@ -250,6 +250,7 @@
                         <outlet property="explicitOption" destination="OWf-uz-tc3" id="5Bl-sw-CcS"/>
                         <outlet property="limitResults" destination="oVD-2L-K7Q" id="LCU-xm-ifU"/>
                         <outlet property="searchButton" destination="gJ6-kx-2lx" id="FBD-Kg-TzH"/>
+                        <outlet property="termInput" destination="1mH-sk-W2L" id="Zkm-8S-Vqq"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7FX-qT-yqb" userLabel="First Responder" sceneMemberID="firstResponder"/>
