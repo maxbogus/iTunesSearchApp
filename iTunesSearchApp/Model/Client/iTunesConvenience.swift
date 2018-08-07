@@ -14,7 +14,7 @@ import Foundation
 extension iTunesClient {
     
     // MARK: Search media by params (GET) Methods
-    func searchByParams(term: String, limit: Int, completionHandlerForSession: @escaping (_ success: Bool, _ resultsDictionary: NSDictionary?, _ totalPages: Int?, _ errorString: String?) -> Void) {
+    func searchByParams(term: String, limit: Int, completionHandlerForSession: @escaping (_ success: Bool, _ resultsDictionary: [[String:AnyObject]]?, _ totalPages: Int?, _ errorString: String?) -> Void) {
         let methodParameters = [
             iTunesParameterKeys.Term: term as Any,
             iTunesParameterKeys.Lang: iTunesParameterValues.Lang,
@@ -26,11 +26,16 @@ extension iTunesClient {
             if error != nil {
                 completionHandlerForSession(false, nil, nil, "Search failed.")
             } else {
-                if let resultsDictionary = results?[iTunesResponseKeys.Results] as? NSDictionary, let totalPages = results?[iTunesResponseKeys.ResultsCount] as? Int {
-                    completionHandlerForSession(true, resultsDictionary, totalPages, nil)
+                if let responseDictionary = results as? NSDictionary {
+                    if let resultsDictionary = responseDictionary[iTunesResponseKeys.Results] as? [[String:AnyObject]], let totalPages = responseDictionary[iTunesResponseKeys.ResultsCount] as? Int {
+                        completionHandlerForSession(true, resultsDictionary, totalPages, nil)
+                    } else {
+                        print("Could not find \(iTunesResponseKeys.Results) in \(responseDictionary)")
+                        completionHandlerForSession(false, nil, nil, "Get results dictionary failed.")
+                    }
                 } else {
-                    print("Could not find \(iTunesResponseKeys.Results) in \(results!)")
-                    completionHandlerForSession(false, nil, nil, "Get results dictionary failed.")
+                    print("Couldn't find response: \(results!)")
+                    completionHandlerForSession(false, nil, nil, "Get response failed.")
                 }
             }
         }

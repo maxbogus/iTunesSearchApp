@@ -30,7 +30,6 @@ class iTunesClient : NSObject {
         /* 1. Set the parameters */
         /* 2/3. Build the URL, Configure the request */
         let request = NSMutableURLRequest(url: iTunesURLFromParameters(parameters, withPathExtension: method))
-        print(request)
         
         /* 4. Make the request */
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
@@ -57,7 +56,6 @@ class iTunesClient : NSObject {
                 sendError("No data was returned by the request!")
                 return
             }
-            print(data)
             
             /* 5/6. Parse the data and use the data (happens in completion handler) */
             self.convertDataWithCompletionHandler(data, completionHandlerForConvertData: completionHandlerForGET)
