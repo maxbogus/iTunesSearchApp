@@ -17,25 +17,24 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var termInput: UITextField!
     
     @IBAction func searchAction(_ sender: Any) {
-        if let limit = Int(limitResults.text!), let term = termInput.text {
-            iTunesClient.sharedInstance.searchByParams(term: term, limit: limit, explicitness: explicitOption.isOn) { (completed, results, resultsCount, error) in
-                if completed {
-                    if let results = results, let count = resultsCount {
-                        print(results)
-                        print(count)
-                    }
-                } else {
-                    let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: UIAlertControllerStyle.alert)
-                    
-                    // add an action (button)
-                    alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                    
-                    // show the alert
-                    self.present(alert, animated: true, completion: nil)
+        let limit: Int = (Int(limitResults.text!) != nil) ? Int(limitResults.text!)! : 25
+        let term: String = (termInput.text != nil) ? termInput.text! : ""
+
+        iTunesClient.sharedInstance.searchByParams(term: term, limit: limit, explicitness: explicitOption.isOn) { (completed, results, resultsCount, error) in
+            if completed {
+                if let results = results, let count = resultsCount {
+                    print(results)
+                    print(count)
                 }
+            } else {
+                let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: UIAlertControllerStyle.alert)
+                
+                // add an action (button)
+                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                
+                // show the alert
+                self.present(alert, animated: true, completion: nil)
             }
-        } else {
-            print(error)
         }
     }
     
@@ -52,6 +51,8 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate {
         super.viewDidLoad()
         limitResults.delegate = self
         termInput.delegate = self
+        
+        limitResults.addDoneButtonToKeyboard(myAction:  #selector(self.limitResults.resignFirstResponder))
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -94,3 +95,22 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate {
     }
 }
 
+extension UITextField{
+    
+    func addDoneButtonToKeyboard(myAction:Selector?){
+        let doneToolbar: UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: 300, height: 40))
+        doneToolbar.barStyle = UIBarStyle.default
+        
+        let flexSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
+        let done: UIBarButtonItem = UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.done, target: self, action: myAction)
+        
+        var items = [UIBarButtonItem]()
+        items.append(flexSpace)
+        items.append(done)
+        
+        doneToolbar.items = items
+        doneToolbar.sizeToFit()
+        
+        self.inputAccessoryView = doneToolbar
+    }
+}
