@@ -37,6 +37,12 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate {
             }
         }
     }
+
+    @IBAction func clearAction(_ sender: Any) {
+        explicitOption.isOn = false
+        limitResults.text = nil
+        termInput.text = nil
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)

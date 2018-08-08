@@ -249,6 +249,7 @@
                                     <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
                                 <connections>
+                                    <action selector="clearAction:" destination="dxQ-4U-0GQ" eventType="touchUpInside" id="tG9-Wd-DmI"/>
                                     <action selector="searchAction:" destination="dxQ-4U-0GQ" eventType="touchUpInside" id="3Ix-ep-zqe"/>
                                 </connections>
                             </button>
