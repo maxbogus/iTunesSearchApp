@@ -54,6 +54,7 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate {
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         limitResults.delegate = self
@@ -67,20 +68,13 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate {
         return true
     }
     
-    
     @objc func keyboardWillShow(_ notification:Notification) {
-//        if termInput.isFirstResponder {
-//            view.frame.origin.y -= self.getKeyboardHeight(notification)
-//        }
         if limitResults.isFirstResponder {
             view.frame.origin.y -= self.getKeyboardHeight(notification)
         }
     }
     
     @objc func keyboardWillHide(_ notification:Notification) {
-//        if termInput.isFirstResponder {
-//            view.frame.origin.y = 0
-//        }
         if limitResults.isFirstResponder {
             view.frame.origin.y = 0
         }
