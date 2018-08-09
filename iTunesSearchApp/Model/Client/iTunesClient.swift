@@ -30,7 +30,7 @@ class iTunesClient : NSObject {
         /* 1. Set the parameters */
         /* 2/3. Build the URL, Configure the request */
         let request = NSMutableURLRequest(url: iTunesURLFromParameters(parameters, withPathExtension: method))
-        
+
         /* 4. Make the request */
         let task = session.dataTask(with: request as URLRequest) { (data, response, error) in
             func sendError(_ error: String) {
