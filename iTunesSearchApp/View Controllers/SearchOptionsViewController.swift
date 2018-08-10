@@ -16,6 +16,9 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate {
     @IBOutlet var searchButton: UIButton!
     @IBOutlet var termInput: UITextField!
     
+    let minValue = 0
+    let maxValue = 200
+    
     @IBAction func searchAction(_ sender: Any) {
         let limit: Int = (Int(limitResults.text!) != nil) ? Int(limitResults.text!)! : 25
         let term: String = (termInput.text != nil) ? termInput.text! : ""
@@ -66,6 +69,17 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let newText = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
+        if newText.isEmpty {
+            return true
+        }
+        else if let intValue = Int(newText), intValue >= self.minValue , intValue <= self.maxValue {
+            return true
+        }
+        return false
     }
     
     @objc func keyboardWillShow(_ notification:Notification) {
