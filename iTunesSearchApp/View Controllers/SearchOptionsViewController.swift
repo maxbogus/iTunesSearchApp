@@ -25,9 +25,10 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
     @IBAction func searchAction(_ sender: Any) {
         let limit: Int = (Int(limitResults.text!) != nil) ? Int(limitResults.text!)! : 25
         let term: String = (termInput.text != nil) ? termInput.text! : ""
+        let country: String = (self.country != "") ? self.country : "US"
         let escapedString = term.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
 
-        iTunesClient.sharedInstance.searchByParams(term: escapedString!, limit: limit, explicitness: explicitOption.isOn) { (completed, results, resultsCount, error) in
+        iTunesClient.sharedInstance.searchByParams(term: escapedString!, limit: limit, country: country, explicitness: explicitOption.isOn) { (completed, results, resultsCount, error) in
             if completed {
                 if let results = results, let count = resultsCount {
                     print(results)
