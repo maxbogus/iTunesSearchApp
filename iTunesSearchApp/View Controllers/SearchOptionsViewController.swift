@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SearchOptionsViewController: UIViewController, UITextFieldDelegate {
+class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var countryList: UITableView!
     @IBOutlet var explicitOption: UISwitch!
     @IBOutlet var limitResults: UITextField!
@@ -18,6 +18,9 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate {
     
     let minValue = 0
     let maxValue = 200
+    var country: String = "US"
+
+    let listOfCountries = ["GA": "Gabon", "RU": "Russian Federation", "US": "United States of America"]
     
     @IBAction func searchAction(_ sender: Any) {
         let limit: Int = (Int(limitResults.text!) != nil) ? Int(limitResults.text!)! : 25
@@ -72,14 +75,40 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        let newText = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
-        if newText.isEmpty {
+        if textField == self.limitResults {
+            let newText = NSString(string: textField.text!).replacingCharacters(in: range, with: string)
+            if newText.isEmpty {
+                return true
+            }
+            else if let intValue = Int(newText), intValue >= self.minValue , intValue <= self.maxValue {
+                return true
+            }
+            return false
+        } else {
             return true
         }
-        else if let intValue = Int(newText), intValue >= self.minValue , intValue <= self.maxValue {
-            return true
-        }
-        return false
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.listOfCountries.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "countryCell", for: indexPath)
+        let row = indexPath.row
+        let indexes = Array(listOfCountries.keys)
+        let key = indexes[row]
+        
+        cell.textLabel?.text = key
+        cell.detailTextLabel?.text = listOfCountries[key]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let indexPath = tableView.indexPathForSelectedRow //optional, to get from any UIButton for example
+        
+        let currentCell = tableView.cellForRow(at: indexPath!)
+        self.country = (currentCell?.textLabel?.text)!
     }
     
     @objc func keyboardWillShow(_ notification:Notification) {
