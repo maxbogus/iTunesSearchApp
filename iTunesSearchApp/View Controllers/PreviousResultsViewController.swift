@@ -9,8 +9,11 @@
 import Foundation
 import UIKit
 
-class PreviousResultsViewController: UICollectionViewController {
-    var previousResults: Array<Any>!
+class PreviousResultsViewController: UITableViewController, UITextFieldDelegate {
+    var previousResults: [String: Any] = [
+        "2018-08-12 03:12:12": ["explicitness": true, "limit": 2, "term": "term", "country": "US"],
+        "2018-08-12 03:12:13": ["explicitness": true, "limit": 2, "term": "term", "country": "US"]
+    ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,5 +28,26 @@ class PreviousResultsViewController: UICollectionViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.previousResults.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "previousSearchRequest", for: indexPath)
+        let row = indexPath.row
+        let indexes = Array(previousResults.keys)
+        let key = indexes[row]
+        
+        cell.textLabel?.text = key
+//        cell.detailTextLabel?.text = previousResults[key]
+        return cell
+    }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let indexPath = tableView.indexPathForSelectedRow //optional, to get from any UIButton for example
+//
+//        let currentCell = tableView.cellForRow(at: indexPath!)
+//        self.country = (currentCell?.textLabel?.text)!
+//    }
 }
 

@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-class SearchResultsViewController: UITableViewController {
+class SearchResultsViewController: UICollectionViewController {
     var results: Array<Any>!
     
     override func viewDidLoad() {

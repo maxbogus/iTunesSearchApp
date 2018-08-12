@@ -56,6 +56,7 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let date = Date()
         let dateString = dateFormatter.string(from: date)
+//        let result = dateString: result
         print("save search")
         print(dateString)
         print(result)
