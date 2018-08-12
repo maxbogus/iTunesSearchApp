@@ -40,6 +40,7 @@ class PreviousResultsViewController: UITableViewController, UITextFieldDelegate 
         
         cell.textLabel?.text = key
 //        cell.detailTextLabel?.text = previousResults[key]
+        cell.detailTextLabel?.text = "previousResults[key]"
         return cell
     }
     
