@@ -39,8 +39,8 @@ class PreviousResultsViewController: UITableViewController, UITextFieldDelegate 
         let key = indexes[row]
         
         cell.textLabel?.text = key
-//        cell.detailTextLabel?.text = previousResults[key]
-        cell.detailTextLabel?.text = "previousResults[key]"
+        let item = previousResults[key] as! [String: Any]
+        cell.detailTextLabel?.text = item.description
         return cell
     }
     
