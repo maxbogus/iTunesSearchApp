@@ -14,7 +14,7 @@ class PreviousResultsViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if (self.previousResults == nil || self.previousResults.count == 0) {
+        if (previousResults == nil || previousResults.count == 0) {
             let alert = UIAlertController(title: "Message", message: "No previous results", preferredStyle: UIAlertControllerStyle.alert)
             
             // add an action (button)

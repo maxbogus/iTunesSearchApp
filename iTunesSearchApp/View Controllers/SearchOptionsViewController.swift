@@ -27,12 +27,17 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         let term: String = (termInput.text != nil) ? termInput.text! : ""
         let country: String = (self.country != "") ? self.country : "US"
         let escapedString = term.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
+        let explicitness = explicitOption.isOn
 
-        iTunesClient.sharedInstance.searchByParams(term: escapedString!, limit: limit, country: country, explicitness: explicitOption.isOn) { (completed, results, resultsCount, error) in
+        iTunesClient.sharedInstance.searchByParams(term: escapedString!, limit: limit, country: country, explicitness: explicitness) { (completed, results, resultsCount, error) in
             if completed {
                 if let results = results, let count = resultsCount {
-                    print(results)
-                    print(count)
+                    let search: [String : Any] = ["limit": limit,
+                                                  "country": country,
+                                                  "term": escapedString as! String,
+                                                  "explicitness": explicitness]
+                    self.saveResults(results: results, count: count)
+                    self.saveSearch(result: search)
                 }
             } else {
                 let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: UIAlertControllerStyle.alert)
@@ -45,11 +50,21 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
             }
         }
     }
-
-    @IBAction func clearAction(_ sender: Any) {
-        explicitOption.isOn = false
-        limitResults.text = nil
-        termInput.text = nil
+    
+    func saveSearch(result: [String: Any]) {
+        let dateFormatter : DateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+        let date = Date()
+        let dateString = dateFormatter.string(from: date)
+        print("save search")
+        print(dateString)
+        print(result)
+    }
+    
+    func saveResults(results: Any, count: Int) {
+        print("save results")
+        print(results)
+        print(count)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,13 +76,19 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         super.viewWillDisappear(animated)
         unsubscribeFromKeyboardNotifications()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         limitResults.delegate = self
         termInput.delegate = self
         
         limitResults.addDoneButtonToKeyboard(myAction:  #selector(self.limitResults.resignFirstResponder))
+    }
+
+    @IBAction func clearAction(_ sender: Any) {
+        explicitOption.isOn = false
+        limitResults.text = nil
+        termInput.text = nil
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
