@@ -172,7 +172,7 @@
             </objects>
             <point key="canvasLocation" x="-303.19999999999999" y="659.82008995502258"/>
         </scene>
-        <!--Search options-->
+        <!--Search Options View Controller-->
         <scene sceneID="0Um-Em-cTS">
             <objects>
                 <viewController id="dxQ-4U-0GQ" customClass="SearchOptionsViewController" customModule="iTunesSearchApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -284,7 +284,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="b9b-fX-V0W"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Search options" id="9TM-io-iht"/>
+                    <tabBarItem key="tabBarItem" systemItem="search" id="9TM-io-iht"/>
                     <connections>
                         <outlet property="countryList" destination="EE4-ut-EnF" id="rI6-xK-t2K"/>
                         <outlet property="explicitOption" destination="OWf-uz-tc3" id="5Bl-sw-CcS"/>
@@ -391,7 +391,7 @@
             </objects>
             <point key="canvasLocation" x="-1126" y="-12"/>
         </scene>
-        <!--Previous searches-->
+        <!--Previous Results View Controller-->
         <scene sceneID="mkE-gE-d6q">
             <objects>
                 <tableViewController id="nZp-43-lXy" customClass="PreviousResultsViewController" customModule="iTunesSearchApp" customModuleProvider="target" sceneMemberID="viewController">
@@ -430,7 +430,7 @@
                             <outlet property="delegate" destination="nZp-43-lXy" id="78M-Gh-Cp5"/>
                         </connections>
                     </tableView>
-                    <tabBarItem key="tabBarItem" title="Previous searches" id="dfb-PB-FIQ"/>
+                    <tabBarItem key="tabBarItem" systemItem="history" id="dfb-PB-FIQ"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="L0a-ug-fTO" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
