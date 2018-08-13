@@ -6,7 +6,7 @@
         <attribute name="explicity" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="limit" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="term" optional="YES" attributeType="String" syncable="YES"/>
-        <relationship name="results" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SearchResult" inverseName="option" inverseEntity="SearchResult" syncable="YES"/>
+        <relationship name="results" optional="YES" toMany="YES" deletionRule="Cascade" destinationEntity="SearchResult" inverseName="option" inverseEntity="SearchResult" syncable="YES"/>
     </entity>
     <entity name="SearchResult" representedClassName="SearchResult" syncable="YES" codeGenerationType="class">
         <attribute name="artistId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -40,7 +40,7 @@
         <relationship name="option" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SearchOption" inverseName="results" inverseEntity="SearchOption" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SearchOption" positionX="-63" positionY="-18" width="128" height="135"/>
-        <element name="SearchResult" positionX="-54" positionY="-9" width="128" height="480"/>
+        <element name="SearchOption" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="SearchResult" positionX="196" positionY="-9" width="128" height="478"/>
     </elements>
 </model>
