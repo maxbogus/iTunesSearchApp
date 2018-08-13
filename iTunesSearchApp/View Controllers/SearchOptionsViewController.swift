@@ -25,6 +25,31 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
 
     let listOfCountries = ["GA": "Gabon", "RU": "Russian Federation", "US": "United States of America"]
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        subscribeToKeyboardNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        unsubscribeFromKeyboardNotifications()
+        fetchedResultsController = nil
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        limitResults.delegate = self
+        termInput.delegate = self
+        
+        limitResults.addDoneButtonToKeyboard(myAction:  #selector(self.limitResults.resignFirstResponder))
+    }
+    
+    @IBAction func clearAction(_ sender: Any) {
+        explicitOption.isOn = false
+        limitResults.text = nil
+        termInput.text = nil
+    }
+    
     @IBAction func searchAction(_ sender: Any) {
         let limit: Int = (Int(limitResults.text!) != nil) ? Int(limitResults.text!)! : 25
         let term: String = (termInput.text != nil) ? termInput.text! : ""
@@ -35,12 +60,8 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         iTunesClient.sharedInstance.searchByParams(term: escapedString!, limit: limit, country: country, explicitness: explicitness) { (completed, results, resultsCount, error) in
             if completed {
                 if let results = results, let count = resultsCount {
-                    let search: [String : Any] = ["limit": limit,
-                                                  "country": country,
-                                                  "term": escapedString as! String,
-                                                  "explicitness": explicitness]
                     self.saveResults(results: results, count: count)
-                    self.saveSearch(result: search)
+                    self.saveSearch(limit: limit, country: country, term: escapedString!, explicitness: explicitness)
                 }
             } else {
                 let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: UIAlertControllerStyle.alert)
@@ -54,27 +75,14 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         }
     }
     
-    func saveSearch(result: [String: Any]) {
-        let dateFormatter : DateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
-        let date = Date()
-        let dateString = dateFormatter.string(from: date)
-
-        DispatchQueue.main.async {
-            let controller = self.storyboard!.instantiateViewController(withIdentifier: "PreviousResultsController") as! PreviousResultsViewController
-            var tempResults = controller.previousResults
-            tempResults[dateString] = result
-            print("temp")
-            print(tempResults)
-            controller.recievedData = tempResults
-            print("controller")
-            print(controller.recievedData)
-            
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            if let tabBarController = appDelegate.window!.rootViewController as? UITabBarController {
-                tabBarController.selectedIndex = 1
-            }
-        }
+    func saveSearch(limit: Int, country: String, term: String, explicitness: Bool) {
+        let searchOption = SearchOption(context: dataController.viewContext)
+        searchOption.country = country
+        searchOption.explicity = explicitness
+        searchOption.limit = Int16(limit)
+        searchOption.term = term
+        searchOption.creationDate = Date()
+        try? dataController.viewContext.save()
     }
     
     func saveResults(results: Any, count: Int) {
@@ -91,35 +99,6 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
 //                tabBarController.selectedIndex = 2
             }
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        subscribeToKeyboardNotifications()
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        unsubscribeFromKeyboardNotifications()
-    }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        limitResults.delegate = self
-        termInput.delegate = self
-        
-        limitResults.addDoneButtonToKeyboard(myAction:  #selector(self.limitResults.resignFirstResponder))
-    }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        fetchedResultsController = nil
-    }
-
-    @IBAction func clearAction(_ sender: Any) {
-        explicitOption.isOn = false
-        limitResults.text = nil
-        termInput.text = nil
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

@@ -35,6 +35,11 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
         }
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        fetchedResultsController = nil
+    }
+    
     fileprivate func setUpFetchedResultsController() {
         let fetchRequest:NSFetchRequest<SearchResult> = SearchResult.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
