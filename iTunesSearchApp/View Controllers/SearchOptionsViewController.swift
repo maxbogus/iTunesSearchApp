@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITableViewDelegate, UITableViewDataSource {
     @IBOutlet var countryList: UITableView!
@@ -19,6 +20,8 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
     let minValue = 0
     let maxValue = 200
     var country: String = "US"
+    var dataController: DataController!
+    var fetchedResultsController:NSFetchedResultsController<SearchOption>!
 
     let listOfCountries = ["GA": "Gabon", "RU": "Russian Federation", "US": "United States of America"]
     
@@ -56,16 +59,38 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         let date = Date()
         let dateString = dateFormatter.string(from: date)
-//        let result = dateString: result
-        print("save search")
-        print(dateString)
-        print(result)
+
+        DispatchQueue.main.async {
+            let controller = self.storyboard!.instantiateViewController(withIdentifier: "PreviousResultsController") as! PreviousResultsViewController
+            var tempResults = controller.previousResults
+            tempResults[dateString] = result
+            print("temp")
+            print(tempResults)
+            controller.recievedData = tempResults
+            print("controller")
+            print(controller.recievedData)
+            
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            if let tabBarController = appDelegate.window!.rootViewController as? UITabBarController {
+                tabBarController.selectedIndex = 1
+            }
+        }
     }
     
     func saveResults(results: Any, count: Int) {
-        print("save results")
-        print(results)
-        print(count)
+//        print("save results")
+//        print(results)
+//        print(count)
+        DispatchQueue.main.async {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            let controller = self.storyboard!.instantiateViewController(withIdentifier: "SearchResultsController") as! SearchResultsViewController
+//            controller.location = location
+            
+            if let tabBarController = appDelegate.window!.rootViewController as? UITabBarController {
+//                print(1)
+//                tabBarController.selectedIndex = 2
+            }
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -84,6 +109,11 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         termInput.delegate = self
         
         limitResults.addDoneButtonToKeyboard(myAction:  #selector(self.limitResults.resignFirstResponder))
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        fetchedResultsController = nil
     }
 
     @IBAction func clearAction(_ sender: Any) {

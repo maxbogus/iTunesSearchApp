@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class SearchResultsViewCellController: UICollectionViewCell {
     @IBOutlet var image: UIImageView!

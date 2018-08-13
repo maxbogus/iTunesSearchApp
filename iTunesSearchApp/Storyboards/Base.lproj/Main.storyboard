@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="7SJ-ke-T3c">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="X84-f7-JEr">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -300,7 +300,7 @@
         <!--Search results-->
         <scene sceneID="u92-eg-JTC">
             <objects>
-                <collectionViewController id="Z8d-Cb-ZAw" customClass="SearchResultsViewController" customModule="iTunesSearchApp" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController storyboardIdentifier="SearchResultsController" id="Z8d-Cb-ZAw" customClass="SearchResultsViewController" customModule="iTunesSearchApp" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="D3C-Gz-bmO">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -344,6 +344,9 @@
                         </connections>
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Search results" id="nf1-CF-hlT"/>
+                    <connections>
+                        <outlet property="photoViewCollection" destination="D3C-Gz-bmO" id="9VK-cG-CmX"/>
+                    </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAE-oz-vPM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -375,32 +378,16 @@
             </objects>
             <point key="canvasLocation" x="-297" y="-12"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="RWr-g9-Of2">
-            <objects>
-                <navigationController id="7SJ-ke-T3c" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HhG-bz-rgv">
-                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <connections>
-                        <segue destination="X84-f7-JEr" kind="relationship" relationship="rootViewController" id="fwE-Lj-N4T"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MyS-gP-S0R" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1126" y="-12"/>
-        </scene>
         <!--Previous Results View Controller-->
         <scene sceneID="mkE-gE-d6q">
             <objects>
-                <tableViewController id="nZp-43-lXy" customClass="PreviousResultsViewController" customModule="iTunesSearchApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="PreviousResultsController" id="nZp-43-lXy" customClass="PreviousResultsViewController" customModule="iTunesSearchApp" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="UAe-PC-Jmy">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="previousSearchRequest" textLabel="N2o-fW-epb" detailTextLabel="aOV-yp-dr5" style="IBUITableViewCellStyleSubtitle" id="nwZ-zI-34X">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="previousSearchRequest " textLabel="N2o-fW-epb" detailTextLabel="aOV-yp-dr5" style="IBUITableViewCellStyleSubtitle" id="nwZ-zI-34X">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nwZ-zI-34X" id="hFh-pA-Hyc">
