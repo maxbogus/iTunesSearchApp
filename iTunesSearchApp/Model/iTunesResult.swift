@@ -36,8 +36,8 @@ struct iTunesResult {
     let artworkUrl100: String?
     let collectionPrice: Double?
     let trackPrice: Double?
-    let collectionExplicitness: String?
-    let trackExplicitness: String?
+    let collectionExplicitness: Bool?
+    let trackExplicitness: Bool?
     let discCount: Double?
     let discNumber: Double?
     let trackCount: Double?
@@ -69,8 +69,8 @@ struct iTunesResult {
         artworkUrl100 = dictionary[iTunesClient.iTunesResponseKeys.ArtworkUrl100] as? String
         collectionPrice = dictionary[iTunesClient.iTunesResponseKeys.CollectionPrice] as? Double
         trackPrice = dictionary[iTunesClient.iTunesResponseKeys.TrackPrice] as? Double
-        collectionExplicitness = dictionary[iTunesClient.iTunesResponseKeys.CollectionExplicitness] as? String
-        trackExplicitness = dictionary[iTunesClient.iTunesResponseKeys.TrackExplicitness] as? String
+        collectionExplicitness = dictionary[iTunesClient.iTunesResponseKeys.CollectionExplicitness] as? Bool
+        trackExplicitness = dictionary[iTunesClient.iTunesResponseKeys.TrackExplicitness] as? Bool
         discCount = dictionary[iTunesClient.iTunesResponseKeys.DiscCount] as? Double
         discNumber = dictionary[iTunesClient.iTunesResponseKeys.DiscNumber] as? Double
         trackCount = dictionary[iTunesClient.iTunesResponseKeys.TrackCount] as? Double
