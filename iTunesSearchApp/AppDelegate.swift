@@ -20,8 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         dataController.load()
         
         let navigationController = window?.rootViewController as! UINavigationController
-        let searchOptionsViewController = navigationController.topViewController as! SearchOptionsViewController
-        searchOptionsViewController.dataController = dataController
+        let mainScreenViewController = navigationController.visibleViewController as! MainScreenViewController
+        mainScreenViewController.dataController = dataController
         
         return true
     }
