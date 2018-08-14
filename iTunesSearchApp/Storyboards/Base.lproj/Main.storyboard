@@ -371,7 +371,7 @@
         <!--Main Screen View Controller-->
         <scene sceneID="76o-sL-9D7">
             <objects>
-                <tabBarController id="X84-f7-JEr" customClass="MainScreenViewController" customModule="iTunesSearchApp" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="MainScreenController" id="X84-f7-JEr" customClass="MainScreenViewController" customModule="iTunesSearchApp" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="arV-4S-qPt">
                         <barButtonItem key="rightBarButtonItem" title="Song info - bebug" id="EIJ-sn-0oQ">
                             <connections>

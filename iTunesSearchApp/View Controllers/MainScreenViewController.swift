@@ -10,15 +10,17 @@ import UIKit
 import CoreData
 
 class MainScreenViewController: UITabBarController {
-    @IBAction func clearResults(_ sender: Any) {
-    }
-    
     var dataController: DataController!
     var fetchedResultsController:NSFetchedResultsController<SearchOption>!
     
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        fetchedResultsController = nil
+    override func viewDidLoad() {
+        print("MainScreenViewController")
+        print(dataController)
     }
+//    
+//    override func viewWillDisappear(_ animated: Bool) {
+//        super.viewWillDisappear(animated)
+//        fetchedResultsController = nil
+//    }
 
 }

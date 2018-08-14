@@ -38,6 +38,12 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let controller = self.storyboard!.instantiateViewController(withIdentifier: "MainScreenController") as! MainScreenViewController
+        print("Search Options")
+        print(controller)
+        print(controller.dataController)
+        dataController = controller.dataController
+        print(dataController)
         limitResults.delegate = self
         termInput.delegate = self
         

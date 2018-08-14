@@ -21,7 +21,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         let navigationController = window?.rootViewController as! UINavigationController
         let mainScreenViewController = navigationController.visibleViewController as! MainScreenViewController
+        print("AppDelegate")
+        print(dataController)
         mainScreenViewController.dataController = dataController
+        print(mainScreenViewController.dataController)
         
         return true
     }
