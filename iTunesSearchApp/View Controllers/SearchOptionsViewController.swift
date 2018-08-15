@@ -77,8 +77,8 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         iTunesClient.sharedInstance.searchByParams(term: escapedString!, limit: limit, country: country, explicitness: explicitness) { (completed, results, resultsCount, error) in
             if completed {
                 if let results = results, let count = resultsCount {
-                    self.saveResults(results: results, count: count)
                     self.saveSearch(limit: limit, country: country, term: escapedString!, explicitness: explicitness)
+                    self.saveResults(results: results, count: count, term: term)
                 }
             } else {
                 let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: UIAlertControllerStyle.alert)
@@ -102,17 +102,74 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         dataController.saveContext()
     }
     
-    func saveResults(results: Any, count: Int) {
+    func saveResults(results: Any, count: Int, term: String) {
+        let results = iTunesResult.iTunesResultFromResults(results as! [[String : AnyObject]])
+        let option = findOption(term: term)
+        for result in results {
+            print(result)
+            let searchResult = SearchResult(context: dataController.viewContext)
+            searchResult.artistId = result.artistId!
+            searchResult.artistName = result.artistName
+            searchResult.artistViewUrl = result.artistViewUrl
+            searchResult.artworkUrl100 = result.artworkUrl100
+            searchResult.artworkUrl60 = result.artworkUrl60
+            searchResult.collectionCensoredName = result.collectionCensoredName
+            searchResult.collectionExplicitness = result.collectionExplicitness!
+            searchResult.collectionId = result.collectionId!
+            searchResult.collectionName = result.collectionName
+            searchResult.collectionPrice = result.collectionPrice!
+            searchResult.collectionViewUrl = result.collectionViewUrl
+            searchResult.country = result.country
+            searchResult.creationDate = Date()
+            searchResult.currency = result.currency
+            searchResult.discCount = result.discCount!
+            searchResult.discNumber = result.discNumber!
+            searchResult.kind = result.kind
+            searchResult.previewUrl = result.previewUrl
+            searchResult.primaryGenreName = result.primaryGenreName
+            searchResult.searchOption = option
+            searchResult.trackCensoredName = result.trackCensoredName
+            searchResult.trackCount = result.trackCount!
+            searchResult.trackExplicitness = result.trackExplicitness!
+            searchResult.trackId = result.trackId!
+            searchResult.trackName = result.trackName
+            searchResult.trackNumber = result.trackNumber!
+            searchResult.trackPrice = result.trackPrice!
+            searchResult.trackTimeMillis = result.trackTimeMillis!
+            searchResult.trackViewUrl = result.trackViewUrl
+            searchResult.wrapperType = result.wrapperType
+            dataController.saveContext()
+        }
         DispatchQueue.main.async {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            let controller = self.storyboard!.instantiateViewController(withIdentifier: "SearchResultsController") as! SearchResultsViewController
-//            controller.location = location
-            
             if let tabBarController = appDelegate.window!.rootViewController as? UITabBarController {
-//                print(1)
-//                tabBarController.selectedIndex = 2
+                tabBarController.selectedIndex = 2
             }
         }
+    }
+    
+    private func findOption(term: String) -> SearchOption? {
+        let predicate = NSPredicate(format: "term == %lf", term)
+        var searchOption: SearchOption?
+        do {
+            try searchOption = fetchSearchOption(predicate)
+        } catch {
+            print("\(#function) error:\(error)")
+        }
+        return searchOption
+    }
+    
+    private func fetchSearchOption(_ predicate: NSPredicate, sorting: NSSortDescriptor? = nil) throws -> SearchOption? {
+        let fr: NSFetchRequest<SearchOption> = SearchOption.fetchRequest()
+        fr.predicate = predicate
+        if let sorting = sorting {
+            fr.sortDescriptors = [sorting]
+        }
+        guard let searchOption = try? dataController.viewContext.fetch(fr).first else {
+            print("nil")
+            return nil
+        }
+        return searchOption
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

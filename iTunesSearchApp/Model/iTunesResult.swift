@@ -18,67 +18,67 @@ struct iTunesResult {
     
     // MARK: Properties
     
-    let wrapperType: String?
-    let kind: String?
-    let artistId: Double?
-    let collectionId: Double?
-    let trackId: Double?
+    let artistId: Int16?
     let artistName: String?
-    let collectionName: String?
-    let trackName: String?
-    let collectionCensoredName: String?
-    let trackCensoredName: String?
     let artistViewUrl: String?
-    let collectionViewUrl: String?
-    let trackViewUrl: String?
-    let previewUrl: String?
     let artworkUrl60: String?
     let artworkUrl100: String?
-    let collectionPrice: Double?
-    let trackPrice: Double?
+    let collectionCensoredName: String?
     let collectionExplicitness: Bool?
-    let trackExplicitness: Bool?
-    let discCount: Double?
-    let discNumber: Double?
-    let trackCount: Double?
-    let trackNumber: Double?
-    let trackTimeMillis: Double?
+    let collectionId: Int16?
+    let collectionName: String?
+    let collectionPrice: Double?
+    let collectionViewUrl: String?
     let country: String?
     let currency: String?
+    let discCount: Int16?
+    let discNumber: Int16?
+    let kind: String?
+    let previewUrl: String?
+    let trackCensoredName: String?
+    let trackCount: Int16?
+    let trackExplicitness: Bool?
+    let trackId: Int16?
+    let trackName: String?
+    let trackNumber: Int16?
+    let trackPrice: Double?
+    let trackViewUrl: String?
+    let trackTimeMillis: Int16?
     let primaryGenreName: String?
+    let wrapperType: String?
     
     // MARK: Initializers
     
     // construct a iTunesResult from a dictionary
     init(dictionary: [String:AnyObject]) {
-        wrapperType = dictionary[iTunesClient.iTunesResponseKeys.Wrapper] as? String
-        kind = dictionary[iTunesClient.iTunesResponseKeys.Kind] as? String
-        artistId = dictionary[iTunesClient.iTunesResponseKeys.ArtistId] as? Double
-        collectionId = dictionary[iTunesClient.iTunesResponseKeys.CollectionId] as? Double
-        trackId = dictionary[iTunesClient.iTunesResponseKeys.TrackId] as? Double
+        artistId = dictionary[iTunesClient.iTunesResponseKeys.ArtistId] as? Int16
         artistName = dictionary[iTunesClient.iTunesResponseKeys.ArtistName] as? String
-        collectionName = dictionary[iTunesClient.iTunesResponseKeys.СollectionName] as? String
-        trackName = dictionary[iTunesClient.iTunesResponseKeys.TrackName] as? String
-        collectionCensoredName = dictionary[iTunesClient.iTunesResponseKeys.СollectionCensoredName] as? String
-        trackCensoredName = dictionary[iTunesClient.iTunesResponseKeys.TrackCensoredName] as? String
         artistViewUrl = dictionary[iTunesClient.iTunesResponseKeys.ArtistViewUrl] as? String
-        collectionViewUrl = dictionary[iTunesClient.iTunesResponseKeys.CollectionViewUrl] as? String
-        trackViewUrl = dictionary[iTunesClient.iTunesResponseKeys.TrackViewUrl] as? String
-        previewUrl = dictionary[iTunesClient.iTunesResponseKeys.PreviewUrl] as? String
         artworkUrl60 = dictionary[iTunesClient.iTunesResponseKeys.ArtworkUrl60] as? String
         artworkUrl100 = dictionary[iTunesClient.iTunesResponseKeys.ArtworkUrl100] as? String
-        collectionPrice = dictionary[iTunesClient.iTunesResponseKeys.CollectionPrice] as? Double
-        trackPrice = dictionary[iTunesClient.iTunesResponseKeys.TrackPrice] as? Double
+        collectionCensoredName = dictionary[iTunesClient.iTunesResponseKeys.СollectionCensoredName] as? String
         collectionExplicitness = dictionary[iTunesClient.iTunesResponseKeys.CollectionExplicitness] as? Bool
-        trackExplicitness = dictionary[iTunesClient.iTunesResponseKeys.TrackExplicitness] as? Bool
-        discCount = dictionary[iTunesClient.iTunesResponseKeys.DiscCount] as? Double
-        discNumber = dictionary[iTunesClient.iTunesResponseKeys.DiscNumber] as? Double
-        trackCount = dictionary[iTunesClient.iTunesResponseKeys.TrackCount] as? Double
-        trackNumber = dictionary[iTunesClient.iTunesResponseKeys.TrackNumber] as? Double
-        trackTimeMillis = dictionary[iTunesClient.iTunesResponseKeys.TrackTimeMillis] as? Double
+        collectionId = dictionary[iTunesClient.iTunesResponseKeys.CollectionId] as? Int16
+        collectionName = dictionary[iTunesClient.iTunesResponseKeys.СollectionName] as? String
+        collectionPrice = dictionary[iTunesClient.iTunesResponseKeys.CollectionPrice] as? Double
+        collectionViewUrl = dictionary[iTunesClient.iTunesResponseKeys.CollectionViewUrl] as? String
         country = dictionary[iTunesClient.iTunesResponseKeys.Country] as? String
         currency = dictionary[iTunesClient.iTunesResponseKeys.Currency] as? String
+        discCount = dictionary[iTunesClient.iTunesResponseKeys.DiscCount] as? Int16
+        discNumber = dictionary[iTunesClient.iTunesResponseKeys.DiscNumber] as? Int16
+        kind = dictionary[iTunesClient.iTunesResponseKeys.Kind] as? String
+        previewUrl = dictionary[iTunesClient.iTunesResponseKeys.PreviewUrl] as? String
         primaryGenreName = dictionary[iTunesClient.iTunesResponseKeys.PrimaryGenreName] as? String
+        trackCensoredName = dictionary[iTunesClient.iTunesResponseKeys.TrackCensoredName] as? String
+        trackCount = dictionary[iTunesClient.iTunesResponseKeys.TrackCount] as? Int16
+        trackExplicitness = dictionary[iTunesClient.iTunesResponseKeys.TrackExplicitness] as? Bool
+        trackId = dictionary[iTunesClient.iTunesResponseKeys.TrackId] as? Int16
+        trackName = dictionary[iTunesClient.iTunesResponseKeys.TrackName] as? String
+        trackNumber = dictionary[iTunesClient.iTunesResponseKeys.TrackNumber] as? Int16
+        trackPrice = dictionary[iTunesClient.iTunesResponseKeys.TrackPrice] as? Double
+        trackTimeMillis = dictionary[iTunesClient.iTunesResponseKeys.TrackTimeMillis] as? Int16
+        trackViewUrl = dictionary[iTunesClient.iTunesResponseKeys.TrackViewUrl] as? String
+        wrapperType = dictionary[iTunesClient.iTunesResponseKeys.Wrapper] as? String
     }
     
     static func iTunesResultFromResults(_ results: [[String:AnyObject]]) -> [iTunesResult] {
