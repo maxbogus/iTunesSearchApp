@@ -20,14 +20,13 @@ class DataController {
     
     init(modelName:String) {
         persistantContainer = NSPersistentContainer(name: modelName)
+        
+        backgroundContext = persistantContainer.newBackgroundContext()
     }
     
     func configureContexts() {
-        backgroundContext = persistantContainer.newBackgroundContext()
-        
         viewContext.automaticallyMergesChangesFromParent = true
         backgroundContext.automaticallyMergesChangesFromParent = true
-        
         backgroundContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         viewContext.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
     }
@@ -62,5 +61,24 @@ extension DataController {
             self.autoSaveViewContext(interval: interval)
         }
     }
+}
+
+extension DataController {
+    func fetchOptions() throws -> [SearchOption]? {
+        let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "SearchOption")
+        
+        guard let option = try viewContext.fetch(fr) as? [SearchOption] else {
+            return nil
+        }
+        return option
+    }
     
+    func fetchResults() throws -> [SearchResult]? {
+        let fr = NSFetchRequest<NSFetchRequestResult>(entityName: "SearchOption")
+        
+        guard let results = try viewContext.fetch(fr) as? [SearchResult] else {
+            return nil
+        }
+        return results
+    }
 }
