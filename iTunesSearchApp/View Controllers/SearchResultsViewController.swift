@@ -22,6 +22,7 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        dataController = AppDelegate.sharedInstance.dataController
         setUpFetchedResultsController()
 
         if (self.results == nil || self.results.count == 0) {

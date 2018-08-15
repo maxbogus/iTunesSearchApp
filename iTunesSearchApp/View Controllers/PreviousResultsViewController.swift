@@ -31,13 +31,12 @@ class PreviousResultsViewController: UITableViewController, UITextFieldDelegate 
     }
     
     override func viewDidLoad() {
+        dataController = AppDelegate.sharedInstance.dataController
         setUpFetchedResultsController()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-        dataController = AppDelegate.sharedInstance.dataController
 
         DispatchQueue.main.async {
             self.previousResults = self.recievedData
