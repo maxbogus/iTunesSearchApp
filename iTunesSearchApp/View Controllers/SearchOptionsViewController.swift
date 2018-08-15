@@ -106,36 +106,37 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         let results = iTunesResult.iTunesResultFromResults(results as! [[String : AnyObject]])
         let option = findOption(term: term)
         for result in results {
-            print(result)
             let searchResult = SearchResult(context: dataController.viewContext)
-            searchResult.artistId = result.artistId!
+            if let artistId = result.artistId, let collectionExplicitness = result.collectionExplicitness, let collectionPrice = result.collectionPrice, let discNumber = result.discNumber, let collectionId = result.collectionId, let discCount = result.discCount, let trackCount = result.trackCount, let trackExplicitness = result.trackExplicitness, let trackId = result.trackId, let trackPrice = result.trackPrice, let trackTimeMillis = result.trackTimeMillis, let trackNumber = result.trackNumber {
+                searchResult.artistId = artistId
+                searchResult.collectionExplicitness = collectionExplicitness
+                searchResult.collectionPrice = collectionPrice
+                searchResult.discNumber = discNumber
+                searchResult.collectionId = collectionId
+                searchResult.discCount = discCount
+                searchResult.trackCount = trackCount
+                searchResult.trackExplicitness = trackExplicitness
+                searchResult.trackId = trackId
+                searchResult.trackPrice = trackPrice
+                searchResult.trackTimeMillis = trackTimeMillis
+                searchResult.trackNumber = trackNumber
+            }
             searchResult.artistName = result.artistName
             searchResult.artistViewUrl = result.artistViewUrl
             searchResult.artworkUrl100 = result.artworkUrl100
             searchResult.artworkUrl60 = result.artworkUrl60
             searchResult.collectionCensoredName = result.collectionCensoredName
-            searchResult.collectionExplicitness = result.collectionExplicitness!
-            searchResult.collectionId = result.collectionId!
             searchResult.collectionName = result.collectionName
-            searchResult.collectionPrice = result.collectionPrice!
             searchResult.collectionViewUrl = result.collectionViewUrl
             searchResult.country = result.country
             searchResult.creationDate = Date()
             searchResult.currency = result.currency
-            searchResult.discCount = result.discCount!
-            searchResult.discNumber = result.discNumber!
             searchResult.kind = result.kind
             searchResult.previewUrl = result.previewUrl
             searchResult.primaryGenreName = result.primaryGenreName
             searchResult.searchOption = option
             searchResult.trackCensoredName = result.trackCensoredName
-            searchResult.trackCount = result.trackCount!
-            searchResult.trackExplicitness = result.trackExplicitness!
-            searchResult.trackId = result.trackId!
             searchResult.trackName = result.trackName
-            searchResult.trackNumber = result.trackNumber!
-            searchResult.trackPrice = result.trackPrice!
-            searchResult.trackTimeMillis = result.trackTimeMillis!
             searchResult.trackViewUrl = result.trackViewUrl
             searchResult.wrapperType = result.wrapperType
             dataController.saveContext()
