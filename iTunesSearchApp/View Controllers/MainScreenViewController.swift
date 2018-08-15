@@ -14,13 +14,12 @@ class MainScreenViewController: UITabBarController {
     var fetchedResultsController:NSFetchedResultsController<SearchOption>!
     
     override func viewDidLoad() {
-        print("MainScreenViewController")
-        print(dataController)
+        dataController = AppDelegate.sharedInstance.dataController
     }
-//    
-//    override func viewWillDisappear(_ animated: Bool) {
-//        super.viewWillDisappear(animated)
-//        fetchedResultsController = nil
-//    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        fetchedResultsController = nil
+    }
 
 }

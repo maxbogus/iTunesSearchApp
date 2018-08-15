@@ -14,17 +14,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    let dataController = DataController(modelName: "iTunesSearchApp")
+    let dataController = DataController.shared
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         dataController.load()
-        
-        let navigationController = window?.rootViewController as! UINavigationController
-        let mainScreenViewController = navigationController.visibleViewController as! MainScreenViewController
-        print("AppDelegate")
-        print(dataController)
-        mainScreenViewController.dataController = dataController
-        print(mainScreenViewController.dataController)
         
         return true
     }
@@ -39,5 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         try? dataController.viewContext.save()
     }
 
+    static var sharedInstance = AppDelegate()
 }
 

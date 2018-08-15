@@ -36,9 +36,10 @@ class PreviousResultsViewController: UITableViewController, UITextFieldDelegate 
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        dataController = AppDelegate.sharedInstance.dataController
 
         DispatchQueue.main.async {
-            print("dispatch")
             self.previousResults = self.recievedData
             self.tableView.reloadData()
 

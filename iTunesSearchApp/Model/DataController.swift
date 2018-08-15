@@ -20,13 +20,11 @@ class DataController {
     
     init(modelName:String) {
         persistantContainer = NSPersistentContainer(name: modelName)
-        
         backgroundContext = persistantContainer.newBackgroundContext()
     }
     
     func configureContexts() {
         viewContext.automaticallyMergesChangesFromParent = true
-        backgroundContext.automaticallyMergesChangesFromParent = true
         backgroundContext.mergePolicy = NSMergePolicy.mergeByPropertyObjectTrump
         viewContext.mergePolicy = NSMergePolicy.mergeByPropertyStoreTrump
     }
@@ -36,11 +34,14 @@ class DataController {
             guard error == nil else {
                 fatalError(error!.localizedDescription)
             }
-            self.autoSaveViewContext()
+            self.backgroundContext.automaticallyMergesChangesFromParent = true
             self.configureContexts()
+            self.autoSaveViewContext()
             completion?()
         }
     }
+    
+    static let shared = DataController(modelName: "iTunesSearchApp")
     
 }
 
@@ -59,6 +60,17 @@ extension DataController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + interval) {
             self.autoSaveViewContext(interval: interval)
+        }
+    }
+    
+    func saveContext() {
+        if self.viewContext.hasChanges {
+            do {
+                try self.viewContext.save()
+            } catch {
+                print("Error occured while saving persistent store: \(error), \(error._userInfo)")
+                
+            }
         }
     }
 }

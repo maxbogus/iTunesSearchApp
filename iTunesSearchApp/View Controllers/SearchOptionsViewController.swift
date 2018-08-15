@@ -28,6 +28,7 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
+        setUpFetchedResultsController()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -38,16 +39,26 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let controller = self.storyboard!.instantiateViewController(withIdentifier: "MainScreenController") as! MainScreenViewController
-        print("Search Options")
-        print(controller)
-        print(controller.dataController)
-        dataController = controller.dataController
+        dataController = AppDelegate.sharedInstance.dataController
         print(dataController)
         limitResults.delegate = self
         termInput.delegate = self
         
         limitResults.addDoneButtonToKeyboard(myAction:  #selector(self.limitResults.resignFirstResponder))
+    }
+    
+    fileprivate func setUpFetchedResultsController() {
+        let fetchRequest:NSFetchRequest<SearchOption> = SearchOption.fetchRequest()
+        let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
+        fetchRequest.sortDescriptors = [sortDescriptor]
+        
+        fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: dataController.viewContext, sectionNameKeyPath: nil, cacheName: "searchOptions")
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            fatalError("The fetch couldn't be performed \(error.localizedDescription)")
+        }
     }
     
     @IBAction func clearAction(_ sender: Any) {
@@ -88,13 +99,10 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         searchOption.limit = Int16(limit)
         searchOption.term = term
         searchOption.creationDate = Date()
-        try? dataController.viewContext.save()
+        dataController.saveContext()
     }
     
     func saveResults(results: Any, count: Int) {
-//        print("save results")
-//        print(results)
-//        print(count)
         DispatchQueue.main.async {
             let appDelegate = UIApplication.shared.delegate as! AppDelegate
             let controller = self.storyboard!.instantiateViewController(withIdentifier: "SearchResultsController") as! SearchResultsViewController
