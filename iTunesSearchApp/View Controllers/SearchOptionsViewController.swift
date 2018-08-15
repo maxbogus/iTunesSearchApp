@@ -29,6 +29,7 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         super.viewWillAppear(animated)
         subscribeToKeyboardNotifications()
         setUpFetchedResultsController()
+        limitResults.text = "1"
     }
     
     override func viewWillDisappear(_ animated: Bool) {
