@@ -40,7 +40,6 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
     override func viewDidLoad() {
         super.viewDidLoad()
         dataController = AppDelegate.sharedInstance.dataController
-        print(dataController)
         limitResults.delegate = self
         termInput.delegate = self
         
@@ -105,6 +104,7 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
     func saveResults(results: Any, count: Int, term: String) {
         let results = iTunesResult.iTunesResultFromResults(results as! [[String : AnyObject]])
         let option = findOption(term: term)
+        print(option)
         for result in results {
             let searchResult = SearchResult(context: dataController.viewContext)
             if let artistId = result.artistId, let collectionExplicitness = result.collectionExplicitness, let collectionPrice = result.collectionPrice, let discNumber = result.discNumber, let collectionId = result.collectionId, let discCount = result.discCount, let trackCount = result.trackCount, let trackExplicitness = result.trackExplicitness, let trackId = result.trackId, let trackPrice = result.trackPrice, let trackTimeMillis = result.trackTimeMillis, let trackNumber = result.trackNumber {
@@ -142,10 +142,7 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
             dataController.saveContext()
         }
         DispatchQueue.main.async {
-            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-            if let tabBarController = appDelegate.window!.rootViewController as? UITabBarController {
-                tabBarController.selectedIndex = 2
-            }
+            AppDelegate.sharedInstance.option = option
         }
     }
     

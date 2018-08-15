@@ -23,7 +23,10 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
     override func viewDidLoad() {
         super.viewDidLoad()
         dataController = AppDelegate.sharedInstance.dataController
-        setUpFetchedResultsController()
+        searchOption = AppDelegate.sharedInstance.option
+        if searchOption != nil {
+            setUpFetchedResultsController()
+        }
 
         if (self.results == nil || self.results.count == 0) {
             let alert = UIAlertController(title: "Message", message: "No results", preferredStyle: UIAlertControllerStyle.alert)
@@ -42,6 +45,7 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     fileprivate func setUpFetchedResultsController() {
+        print(searchOption)
         let fetchRequest:NSFetchRequest<SearchResult> = SearchResult.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         let predicate = NSPredicate(format: "searchOption == %@", searchOption)
@@ -64,19 +68,26 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
+        if fetchedResultsController == nil {
+            return 1
+        }
         return fetchedResultsController.sections?.count ?? 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if fetchedResultsController == nil {
+            return 1
+        }
         return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "imageCell", for: indexPath) as! SearchResultsViewCellController
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchResultItem", for: indexPath) as! SearchResultsViewCellController
         cell.image?.image = nil
         //        cell.activityIndicator.startAnimating()
-        
-        let photo = fetchedResultsController.object(at: indexPath)
+        if fetchedResultsController != nil {
+            let photo = fetchedResultsController.object(at: indexPath)
+        }
         
         //        setUpImage(using: cell, photo: photo, collectionView: collectionView, index: indexPath)
         
