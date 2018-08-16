@@ -11,8 +11,7 @@ import UIKit
 import CoreData
 
 class PreviousResultsViewController: UITableViewController, UITextFieldDelegate {
-    var previousResults: [String: Any] = [:]
-    var recievedData: [String: Any] = [:]
+    var previousResults: [SearchOption]!
     var dataController: DataController!
     var fetchedResultsController:NSFetchedResultsController<SearchOption>!
     
@@ -39,10 +38,12 @@ class PreviousResultsViewController: UITableViewController, UITextFieldDelegate 
         super.viewWillAppear(animated)
 
         DispatchQueue.main.async {
-            self.previousResults = self.recievedData
-            self.tableView.reloadData()
+            if let searchOptions = self.loadSearchOptions() {
+                self.previousResults = searchOptions
+                self.tableView.reloadData()
+            }
 
-            if (self.previousResults.count == 0) {
+            if (self.previousResults == nil || self.previousResults.count == 0) {
                 let alert = UIAlertController(title: "Message", message: "No previous results", preferredStyle: UIAlertControllerStyle.alert)
                 
                 // add an action (button)
@@ -59,23 +60,24 @@ class PreviousResultsViewController: UITableViewController, UITextFieldDelegate 
         fetchedResultsController = nil
     }
     
+    func loadSearchOptions() -> [SearchOption]? {
+        if let controller = fetchedResultsController {
+            if let objects = controller.fetchedObjects {
+                return objects as [SearchOption]
+            }
+        }
+        return nil
+    }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("number of section rows")
-        print(self.previousResults.count)
-        return self.previousResults.count
+        return fetchedResultsController.sections?.count ?? 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "previousSearchRequest", for: indexPath)
-        let row = indexPath.row
-        let indexes = Array(previousResults.keys)
-        let key = indexes[row]
-        
-        cell.textLabel?.text = key
-        print(key)
-        let item = previousResults[key] as! [String: Any]
+        let item = fetchedResultsController.object(at: indexPath)
         cell.detailTextLabel?.text = item.description
-        print(item.description)
+        cell.textLabel?.text = "\(describing: item.creationDate?.description)"
         return cell
     }
     
@@ -83,6 +85,7 @@ class PreviousResultsViewController: UITableViewController, UITextFieldDelegate 
         let indexPath = tableView.indexPathForSelectedRow //optional, to get from any UIButton for example
 
         let currentCell = tableView.cellForRow(at: indexPath!)
+        print(fetchedResultsController.object(at: indexPath!))
         print((currentCell?.textLabel?.text)!)
         print((currentCell?.detailTextLabel?.text)!)
 //        self.country = (currentCell?.textLabel?.text)!
