@@ -20,14 +20,14 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
     var updatedIndexPaths: [IndexPath]!
     var fetchedResultsController:NSFetchedResultsController<SearchResult>!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         dataController = AppDelegate.sharedInstance.dataController
         searchOption = AppDelegate.sharedInstance.option
         if searchOption != nil {
             setUpFetchedResultsController()
         }
-
+        
         if (self.results == nil || self.results.count == 0) {
             let alert = UIAlertController(title: "Message", message: "No results", preferredStyle: UIAlertControllerStyle.alert)
             
@@ -45,7 +45,6 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
     }
     
     fileprivate func setUpFetchedResultsController() {
-        print(searchOption)
         let fetchRequest:NSFetchRequest<SearchResult> = SearchResult.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
         let predicate = NSPredicate(format: "searchOption == %@", searchOption)
@@ -61,22 +60,17 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
             fatalError("The fetch couldn't be performed \(error.localizedDescription)")
         }
     }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        fetchedResultsController = nil
-    }
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if fetchedResultsController == nil {
-            return 1
+            return 0
         }
         return fetchedResultsController.sections?.count ?? 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if fetchedResultsController == nil {
-            return 1
+            return 0
         }
         return fetchedResultsController.sections?[section].numberOfObjects ?? 0
     }
