@@ -78,8 +78,13 @@ class PreviousResultsViewController: UITableViewController, UITextFieldDelegate 
         
         if self.validateIndexPath(indexPath) {
             let item = fetchedResultsController.object(at: indexPath)
-            cell.detailTextLabel?.text = item.description
-            cell.textLabel?.text = "\(describing: item.creationDate?.description)"
+            let term: String = (item.term != nil && item.term != "") ? item.term! : "no term"
+            let country: String = (item.country != nil) ? item.country! : "no country"
+            let limit: String = String(item.limit)
+            let explicity: String = (item.explicity) ? "Yes" : "No"
+            cell.detailTextLabel?.text = "Term: \(term). Coutry: \(country). Limit: \(limit). Explicity: \(explicity)"
+            let text: String = (item.creationDate?.description)!
+            cell.textLabel?.text = text
         } else {
             print("Attempting to configure a cell for an indexPath that is out of bounds: \(indexPath)")
         }
