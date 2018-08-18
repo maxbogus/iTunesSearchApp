@@ -82,8 +82,9 @@ class PreviousResultsViewController: UITableViewController, UITextFieldDelegate 
             let country: String = (item.country != nil) ? item.country! : "no country"
             let limit: String = String(item.limit)
             let explicity: String = (item.explicity) ? "Yes" : "No"
-            cell.detailTextLabel?.text = "Term: \(term). Coutry: \(country). Limit: \(limit). Explicity: \(explicity)"
             let text: String = (item.creationDate?.description)!
+
+            cell.detailTextLabel?.text = "Term: \(term). Coutry: \(country). Limit: \(limit). Explicity: \(explicity)"
             cell.textLabel?.text = text
         } else {
             print("Attempting to configure a cell for an indexPath that is out of bounds: \(indexPath)")
@@ -94,18 +95,18 @@ class PreviousResultsViewController: UITableViewController, UITextFieldDelegate 
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow //optional, to get from any UIButton for example
-        let currentCell = tableView.cellForRow(at: indexPath!)
         
         if self.validateIndexPath(indexPath!) {
-            print(fetchedResultsController.object(at: indexPath!))
+            AppDelegate.sharedInstance.option = fetchedResultsController.object(at: indexPath!)
         } else {
             print("Attempting to configure a cell for an indexPath that is out of bounds: \(String(describing: indexPath))")
         }
 
-        print((currentCell?.textLabel?.text)!)
-        print((currentCell?.detailTextLabel?.text)!)
+        let navigationController = (AppDelegate.sharedInstance.window?.rootViewController as? UINavigationController)!
+        let tabBarController = navigationController.topViewController as! UITabBarController
+        
+        tabBarController.selectedIndex = 0
 
-//        self.country = (currentCell?.textLabel?.text)!
     }
     
     func validateIndexPath(_ indexPath: IndexPath) -> Bool {

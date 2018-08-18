@@ -2,6 +2,7 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14135" systemVersion="17G65" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="SearchOption" representedClassName="SearchOption" syncable="YES" codeGenerationType="class">
         <attribute name="country" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="countryIndex" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="creationDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="explicity" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="limit" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
@@ -41,7 +42,7 @@
         <relationship name="searchOption" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="SearchOption" inverseName="results" inverseEntity="SearchOption" syncable="YES"/>
     </entity>
     <elements>
-        <element name="SearchOption" positionX="-63" positionY="-18" width="128" height="133"/>
+        <element name="SearchOption" positionX="-63" positionY="-18" width="128" height="150"/>
         <element name="SearchResult" positionX="196" positionY="-9" width="128" height="493"/>
     </elements>
 </model>

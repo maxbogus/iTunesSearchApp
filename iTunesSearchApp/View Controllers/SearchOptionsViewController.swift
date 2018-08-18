@@ -22,6 +22,7 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
     let minValue = 0
     let maxValue = 200
     var country: String = "US"
+    var countryIndex : IndexPath!
     var dataController: DataController!
     var fetchedResultsController:NSFetchedResultsController<SearchOption>!
 
@@ -29,10 +30,18 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        dataController = AppDelegate.sharedInstance.dataController
         setupView(status: true)
+        setupSearchOptions()
         subscribeToKeyboardNotifications()
         setUpFetchedResultsController()
-        limitResults.text = "1"
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        limitResults.delegate = self
+        termInput.delegate = self
+        limitResults.addDoneButtonToKeyboard(myAction:  #selector(self.limitResults.resignFirstResponder))
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -41,13 +50,16 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         fetchedResultsController = nil
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        dataController = AppDelegate.sharedInstance.dataController
-        limitResults.delegate = self
-        termInput.delegate = self
-        
-        limitResults.addDoneButtonToKeyboard(myAction:  #selector(self.limitResults.resignFirstResponder))
+    fileprivate func setupSearchOptions() {
+        if let option: SearchOption = AppDelegate.sharedInstance.option {
+            limitResults.text = String(option.limit)
+            termInput.text = option.term
+            explicitOption.isOn = option.explicity
+            let indexPath = IndexPath(row:Int(option.countryIndex), section: 0)
+            countryList.selectRow(at: indexPath, animated: true, scrollPosition: UITableViewScrollPosition.none)
+        } else {
+            limitResults.text = "1"
+        }
     }
     
     fileprivate func setupView(status: Bool) {
@@ -91,7 +103,8 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         iTunesClient.sharedInstance.searchByParams(term: escapedString!, limit: limit, country: country, explicitness: explicitness) { (completed, results, resultsCount, error) in
             if completed {
                 if let results = results, let count = resultsCount {
-                    self.saveSearch(limit: limit, country: country, term: escapedString!, explicitness: explicitness)
+                    let row = (self.countryIndex != nil) ? self.countryIndex.row : 0
+                    self.saveSearch(limit: limit, country: country, term: escapedString!, explicitness: explicitness, row: row)
                     self.saveResults(results: results, count: count, term: term)
                 }
                 self.setupView(status: true)
@@ -108,12 +121,13 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         }
     }
     
-    func saveSearch(limit: Int, country: String, term: String, explicitness: Bool) {
+    func saveSearch(limit: Int, country: String, term: String, explicitness: Bool, row: Int) {
         let searchOption = SearchOption(context: dataController.viewContext)
         searchOption.country = country
         searchOption.explicity = explicitness
         searchOption.limit = Int16(limit)
         searchOption.term = term
+        searchOption.countryIndex = Int16(row)
         searchOption.creationDate = Date()
         dataController.saveContext()
     }
@@ -180,7 +194,6 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
             fr.sortDescriptors = [sorting]
         }
         guard let searchOption = try? dataController.viewContext.fetch(fr).first else {
-            print("nil")
             return nil
         }
         return searchOption
@@ -226,6 +239,7 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         
         let currentCell = tableView.cellForRow(at: indexPath!)
         self.country = (currentCell?.textLabel?.text)!
+        self.countryIndex = indexPath
     }
     
     @objc func keyboardWillShow(_ notification:Notification) {
