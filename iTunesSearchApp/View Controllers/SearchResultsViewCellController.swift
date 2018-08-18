@@ -11,7 +11,8 @@ import UIKit
 import CoreData
 
 class SearchResultsViewCellController: UICollectionViewCell {
-    @IBOutlet var image: UIImageView!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var descriptionLabel: UILabel!
-
+    @IBOutlet var image: UIImageView!
+    
 }
