@@ -173,6 +173,10 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         }
         DispatchQueue.main.async {
             AppDelegate.sharedInstance.option = option
+            let navigationController = (AppDelegate.sharedInstance.window?.rootViewController as? UINavigationController)!
+            let tabBarController = navigationController.topViewController as! UITabBarController
+            
+            tabBarController.selectedIndex = 2
         }
     }
     
