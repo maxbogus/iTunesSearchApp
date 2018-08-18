@@ -280,9 +280,10 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="faO-oc-uvW">
-                                <rect key="frame" x="177" y="464" width="20" height="20"/>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="faO-oc-uvW">
+                                <rect key="frame" x="177" y="462" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="color" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -291,6 +292,7 @@
                     <tabBarItem key="tabBarItem" systemItem="search" id="9TM-io-iht"/>
                     <connections>
                         <outlet property="activityIndicator" destination="faO-oc-uvW" id="KlN-e6-gRF"/>
+                        <outlet property="clearButton" destination="XSg-hT-cSX" id="xDF-0m-2Pk"/>
                         <outlet property="countryList" destination="EE4-ut-EnF" id="rI6-xK-t2K"/>
                         <outlet property="explicitOption" destination="OWf-uz-tc3" id="5Bl-sw-CcS"/>
                         <outlet property="limitResults" destination="oVD-2L-K7Q" id="LCU-xm-ifU"/>

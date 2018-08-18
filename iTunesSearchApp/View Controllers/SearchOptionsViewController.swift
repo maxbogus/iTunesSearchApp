@@ -14,8 +14,9 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
     @IBOutlet var countryList: UITableView!
     @IBOutlet var explicitOption: UISwitch!
     @IBOutlet var limitResults: UITextField!
-    @IBOutlet var searchButton: UIButton!
     @IBOutlet var termInput: UITextField!
+    @IBOutlet var clearButton: UIButton!
+    @IBOutlet var searchButton: UIButton!
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
 
     let minValue = 0
@@ -28,6 +29,7 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        setupView(status: true)
         subscribeToKeyboardNotifications()
         setUpFetchedResultsController()
         limitResults.text = "1"
@@ -46,6 +48,16 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         termInput.delegate = self
         
         limitResults.addDoneButtonToKeyboard(myAction:  #selector(self.limitResults.resignFirstResponder))
+    }
+    
+    fileprivate func setupView(status: Bool) {
+        DispatchQueue.main.async {
+            self.activityIndicator.isHidden = status
+            self.clearButton.alpha = (status) ? 1.0 : 0.5
+            self.clearButton.isEnabled = status
+            self.searchButton.alpha = (status) ? 1.0 : 0.5
+            self.searchButton.isEnabled = status
+        }
     }
     
     fileprivate func setUpFetchedResultsController() {
@@ -74,6 +86,7 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         let country: String = (self.country != "") ? self.country : "US"
         let escapedString = term.addingPercentEncoding(withAllowedCharacters:NSCharacterSet.urlQueryAllowed)
         let explicitness = explicitOption.isOn
+        setupView(status: false)
 
         iTunesClient.sharedInstance.searchByParams(term: escapedString!, limit: limit, country: country, explicitness: explicitness) { (completed, results, resultsCount, error) in
             if completed {
@@ -81,6 +94,7 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
                     self.saveSearch(limit: limit, country: country, term: escapedString!, explicitness: explicitness)
                     self.saveResults(results: results, count: count, term: term)
                 }
+                self.setupView(status: true)
             } else {
                 let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: UIAlertControllerStyle.alert)
                 
@@ -89,6 +103,7 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
                 
                 // show the alert
                 self.present(alert, animated: true, completion: nil)
+                self.setupView(status: true)
             }
         }
     }
@@ -106,7 +121,6 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
     func saveResults(results: Any, count: Int, term: String) {
         let results = iTunesResult.iTunesResultFromResults(results as! [[String : AnyObject]])
         let option = findOption(term: term)
-        print(option)
         for result in results {
             let searchResult = SearchResult(context: dataController.viewContext)
             if let artistId = result.artistId, let collectionExplicitness = result.collectionExplicitness, let collectionPrice = result.collectionPrice, let discNumber = result.discNumber, let collectionId = result.collectionId, let discCount = result.discCount, let trackCount = result.trackCount, let trackExplicitness = result.trackExplicitness, let trackId = result.trackId, let trackPrice = result.trackPrice, let trackTimeMillis = result.trackTimeMillis, let trackNumber = result.trackNumber {
