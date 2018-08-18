@@ -16,7 +16,8 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
     @IBOutlet var limitResults: UITextField!
     @IBOutlet var searchButton: UIButton!
     @IBOutlet var termInput: UITextField!
-    
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+
     let minValue = 0
     let maxValue = 200
     var country: String = "US"

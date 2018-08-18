@@ -170,7 +170,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l8a-xE-Mka" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-303.19999999999999" y="659.82008995502258"/>
+            <point key="canvasLocation" x="2655" y="321"/>
         </scene>
         <!--Search Options View Controller-->
         <scene sceneID="0Um-Em-cTS">
@@ -280,12 +280,17 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="faO-oc-uvW">
+                                <rect key="frame" x="177" y="464" width="20" height="20"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="b9b-fX-V0W"/>
                     </view>
                     <tabBarItem key="tabBarItem" systemItem="search" id="9TM-io-iht"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="faO-oc-uvW" id="KlN-e6-gRF"/>
                         <outlet property="countryList" destination="EE4-ut-EnF" id="rI6-xK-t2K"/>
                         <outlet property="explicitOption" destination="OWf-uz-tc3" id="5Bl-sw-CcS"/>
                         <outlet property="limitResults" destination="oVD-2L-K7Q" id="LCU-xm-ifU"/>
@@ -350,7 +355,7 @@
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAE-oz-vPM" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="653.60000000000002" y="-992.65367316341838"/>
+            <point key="canvasLocation" x="1644" y="321"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="xlo-qz-iET">
@@ -372,13 +377,7 @@
         <scene sceneID="76o-sL-9D7">
             <objects>
                 <tabBarController storyboardIdentifier="MainScreenController" id="X84-f7-JEr" customClass="MainScreenViewController" customModule="iTunesSearchApp" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="arV-4S-qPt">
-                        <barButtonItem key="rightBarButtonItem" title="Song info - bebug" id="EIJ-sn-0oQ">
-                            <connections>
-                                <segue destination="Wc5-Qn-TOZ" kind="show" id="vHa-07-Ean"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="arV-4S-qPt"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="lFZ-nm-iy2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -387,7 +386,6 @@
                     <connections>
                         <segue destination="dxQ-4U-0GQ" kind="relationship" relationship="viewControllers" id="BrL-eL-U5z"/>
                         <segue destination="nZp-43-lXy" kind="relationship" relationship="viewControllers" id="SoS-x8-60D"/>
-                        <segue destination="Z8d-Cb-ZAw" kind="relationship" relationship="viewControllers" id="Sio-kw-dqk"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="isN-7k-vsH" userLabel="First Responder" sceneMemberID="firstResponder"/>
