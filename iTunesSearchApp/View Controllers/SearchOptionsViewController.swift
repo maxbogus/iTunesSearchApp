@@ -181,10 +181,11 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
     }
     
     private func findOption(term: String) -> SearchOption? {
-        let predicate = NSPredicate(format: "term == %lf", term)
+        let predicate = NSPredicate(format: "term == %@", term)
         var searchOption: SearchOption?
         do {
             try searchOption = fetchSearchOption(predicate)
+            
         } catch {
             print("\(#function) error:\(error)")
         }

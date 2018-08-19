@@ -11,37 +11,50 @@ import UIKit
 import CoreData
 
 class SearchResultsViewController: UIViewController, UICollectionViewDelegate, UICollectionViewDataSource {
+    @IBOutlet var searchResultsCollection: UICollectionView!
+    @IBOutlet var flowLayout: UICollectionViewFlowLayout!
+
     var results: Array<Any>!
-    @IBOutlet var photoViewCollection: UICollectionView!
     var searchOption: SearchOption!
     var dataController: DataController!
     var insertedIndexPaths: [IndexPath]!
     var deletedIndexPaths: [IndexPath]!
     var updatedIndexPaths: [IndexPath]!
     var fetchedResultsController:NSFetchedResultsController<SearchResult>!
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         dataController = AppDelegate.sharedInstance.dataController
+        print(AppDelegate.sharedInstance.dataController, AppDelegate.sharedInstance.option)
         searchOption = AppDelegate.sharedInstance.option
         if searchOption != nil {
             setUpFetchedResultsController()
         }
-        
-        if (self.results == nil || self.results.count == 0) {
-            let alert = UIAlertController(title: "Message", message: "No results", preferredStyle: UIAlertControllerStyle.alert)
-            
-            // add an action (button)
-            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-            
-            // show the alert
-            self.present(alert, animated: true, completion: nil)
+
+        searchResultsCollection.delegate = self
+        searchResultsCollection.dataSource = self
+
+        if searchOption != nil {
+            print(searchOption.results)
+            if let results = searchOption.results, results.count == 0 {
+                self.showError(error: "No results")
+            }
         }
+        
+        searchResultsCollection?.reloadData()
+    }
+    
+    override func viewDidLoad() {
+        updateFlowLayout(view.frame.size)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         fetchedResultsController = nil
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        updateFlowLayout(size)
     }
     
     fileprivate func setUpFetchedResultsController() {
@@ -61,6 +74,31 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
         }
     }
     
+    private func showError(error: String) {
+        let alert = UIAlertController(title: "Message", message: "\(error)", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    private func updateFlowLayout(_ withSize: CGSize) {
+        
+        let landscape = withSize.width > withSize.height
+        
+        let space: CGFloat = landscape ? 5 : 3
+        let items: CGFloat = landscape ? 2 : 3
+        
+        let dimension = (withSize.width - ((items + 1) * space)) / items
+        
+        flowLayout?.minimumInteritemSpacing = space
+        flowLayout?.minimumLineSpacing = space
+        flowLayout?.itemSize = CGSize(width: dimension, height: dimension)
+        flowLayout?.sectionInset = UIEdgeInsets(top: space, left: space, bottom: space, right: space)
+    }
+    
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         if fetchedResultsController == nil {
             return 0
@@ -78,6 +116,7 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchResultItem", for: indexPath) as! SearchResultsViewCellController
         cell.image?.image = nil
+        cell.descriptionLabel.text = "hello"
         //        cell.activityIndicator.startAnimating()
         if fetchedResultsController != nil {
             let photo = fetchedResultsController.object(at: indexPath)
@@ -123,18 +162,18 @@ extension SearchResultsViewController: NSFetchedResultsControllerDelegate {
     
     func controllerDidChangeContent(_ controller: NSFetchedResultsController<NSFetchRequestResult>) {
         
-        photoViewCollection.performBatchUpdates({() -> Void in
+        searchResultsCollection.performBatchUpdates({() -> Void in
             
             for indexPath in self.insertedIndexPaths {
-                self.photoViewCollection.insertItems(at: [indexPath])
+                self.searchResultsCollection.insertItems(at: [indexPath])
             }
             
             for indexPath in self.deletedIndexPaths {
-                self.photoViewCollection.deleteItems(at: [indexPath])
+                self.searchResultsCollection.deleteItems(at: [indexPath])
             }
             
             for indexPath in self.updatedIndexPaths {
-                self.photoViewCollection.reloadItems(at: [indexPath])
+                self.searchResultsCollection.reloadItems(at: [indexPath])
             }
             
         }, completion: nil)

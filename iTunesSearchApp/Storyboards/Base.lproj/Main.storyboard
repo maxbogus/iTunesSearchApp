@@ -358,7 +358,8 @@
                     </collectionView>
                     <tabBarItem key="tabBarItem" title="Search results" id="nf1-CF-hlT"/>
                     <connections>
-                        <outlet property="photoViewCollection" destination="D3C-Gz-bmO" id="9VK-cG-CmX"/>
+                        <outlet property="flowLayout" destination="l0U-qD-mlc" id="90v-r1-zYb"/>
+                        <outlet property="searchResultsCollection" destination="D3C-Gz-bmO" id="9VK-cG-CmX"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oAE-oz-vPM" userLabel="First Responder" sceneMemberID="firstResponder"/>
