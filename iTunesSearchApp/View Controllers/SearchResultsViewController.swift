@@ -25,8 +25,8 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         dataController = AppDelegate.sharedInstance.dataController
-        print(AppDelegate.sharedInstance.dataController, AppDelegate.sharedInstance.option)
         searchOption = AppDelegate.sharedInstance.option
+
         if searchOption != nil {
             setUpFetchedResultsController()
         }
@@ -34,11 +34,13 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
         searchResultsCollection.delegate = self
         searchResultsCollection.dataSource = self
 
-        if searchOption != nil {
+        if (searchOption != nil) {
             print(searchOption.results)
             if let results = searchOption.results, results.count == 0 {
                 self.showError(error: "No results")
             }
+        } else {
+            self.showError(error: "No results")
         }
         
         searchResultsCollection?.reloadData()
@@ -115,14 +117,24 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchResultItem", for: indexPath) as! SearchResultsViewCellController
-        cell.image?.image = nil
-        cell.descriptionLabel.text = "hello"
-        //        cell.activityIndicator.startAnimating()
+
         if fetchedResultsController != nil {
-            let photo = fetchedResultsController.object(at: indexPath)
+            let result: SearchResult = fetchedResultsController.object(at: indexPath)
+            cell.image?.image = nil
+            var trackName: String = ""; var artistName: String = ""
+            if let track: String = result.trackName {
+                trackName = track
+            }
+            if let artist: String = result.artistName {
+                artistName = artist
+            }
+            
+            cell.descriptionLabel.text = "\(artistName)\(trackName)"
+            
+        } else {
+            cell.image?.image = nil
+            cell.descriptionLabel.text = "no text"
         }
-        
-        //        setUpImage(using: cell, photo: photo, collectionView: collectionView, index: indexPath)
         
         return cell
     }
