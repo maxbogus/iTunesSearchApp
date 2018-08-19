@@ -14,5 +14,5 @@ class SearchResultsViewCellController: UICollectionViewCell {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var descriptionLabel: UILabel!
     @IBOutlet var image: UIImageView!
-    
+
 }

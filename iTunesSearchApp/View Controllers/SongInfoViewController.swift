@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import CoreData
 
 class SongInfoViewController: UIViewController {
     @IBOutlet var artwork: UIImageView!
@@ -30,11 +31,20 @@ class SongInfoViewController: UIViewController {
     @IBOutlet var country: UILabel!
     @IBOutlet var genre: UILabel!
     
+    var dataController: DataController!
+    var result: SearchResult!
+    
     @IBAction func viewArtistInItunes(_ sender: Any) {
     }
+
     @IBAction func viewCollectionInItunes(_ sender: Any) {
     }
+
     @IBAction func viewTrackInItunes(_ sender: Any) {
+    }
+
+    @IBAction func dismiss(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
     }
     
 }

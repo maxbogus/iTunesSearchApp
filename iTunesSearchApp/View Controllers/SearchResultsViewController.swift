@@ -118,6 +118,7 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "searchResultItem", for: indexPath) as! SearchResultsViewCellController
 
+        cell.activityIndicator.startAnimating()
         if fetchedResultsController != nil {
             let result: SearchResult = fetchedResultsController.object(at: indexPath)
             cell.image?.image = nil
@@ -135,8 +136,18 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
             cell.image?.image = nil
             cell.descriptionLabel.text = "no text"
         }
+        cell.activityIndicator.stopAnimating()
         
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let resultToOpen = fetchedResultsController.object(at: indexPath)
+
+        let songInfoViewController = self.storyboard!.instantiateViewController(withIdentifier: "SongInfoController") as! SongInfoViewController
+        songInfoViewController.dataController = dataController
+        songInfoViewController.result = resultToOpen
+        self.navigationController!.pushViewController(songInfoViewController, animated: true)
     }
     
 }
