@@ -130,7 +130,7 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
                 artistName = artist
             }
             
-            cell.descriptionLabel.text = "\(artistName)\(trackName)"
+            cell.descriptionLabel.text = "\(artistName) \(trackName)"
             
         } else {
             cell.image?.image = nil
