@@ -16,18 +16,9 @@ class SongInfoViewController: UIViewController {
     @IBOutlet var artistNameButton: UIButton!
     @IBOutlet var collectionName: UILabel!
     @IBOutlet var collectionNameButton: UIButton!
-    @IBOutlet var collectionPrice: UILabel!
-    @IBOutlet var collectionExplicitness: UILabel!
-    @IBOutlet var country: UILabel!
-    @IBOutlet var discCount: UILabel!
-    @IBOutlet var discNumber: UILabel!
-    @IBOutlet var genre: UILabel!
     @IBOutlet var trackName: UILabel!
     @IBOutlet var trackNameButton: UIButton!
-    @IBOutlet var trackPrice: UILabel!
-    @IBOutlet var trackExplicitness: UILabel!
-    @IBOutlet var trackNumber: UILabel!
-    @IBOutlet var trackTime: UILabel!
+    @IBOutlet var textView: UITextView!
 
     var dataController: DataController!
     var result: SearchResult!
@@ -69,20 +60,20 @@ class SongInfoViewController: UIViewController {
     
     private func populateView(result: SearchResult) {
         if let artwork = result.artworkUrl100, let artistName = result.artistName, let collectionName = result.collectionName, let country = result.country, let genre = result.primaryGenreName, let trackName = result.trackName {
-            print(artwork)
-            self.artistName.text = "Artist: \(artistName)"
-            self.collectionName.text = "Collection: \(collectionName)"
-            self.collectionPrice.text = "Collection price: \(result.collectionPrice)"
-            self.collectionExplicitness.text = (result.collectionExplicitness) ? "Collection explicit: Yes" : "Collection explicit: No"
-            self.country.text = "Country: \(country)"
-            self.discCount.text = "Disc count: \(result.discCount)"
-            self.discNumber.text = "Disc count: \(result.discNumber)"
-            self.genre.text = "Genre: \(genre)"
-            self.trackName.text = "Track name: \(trackName)"
-            self.trackPrice.text = "Track price: \(result.trackPrice)"
-            self.trackExplicitness.text = (result.trackExplicitness) ? "Track explicit: Yes" : "Track explicit: No"
-            self.trackNumber.text = "Track number: \(result.trackNumber)"
-            self.trackTime.text = "Track time: \(result.trackTimeMillis)"
+            self.artistName.text = "Artist: \(artistName).\n"
+            self.collectionName.text = "Collection: \(collectionName).\n"
+            self.trackName.text = "Track name: \(trackName).\n"
+            let collectionPrice = "Collection price: \(result.collectionPrice).\n"
+            let collectionExplicitness = (result.collectionExplicitness) ? "Collection explicit: Yes.\n" : "Collection explicit: No.\n"
+            let country = (country.count > 0) ? "Country: \(country).\n" : ""
+            let discCount = "Disc count: \(result.discCount).\n"
+            let discNumber = "Disc count: \(result.discNumber).\n"
+            let genre = (genre.count > 0) ? "Genre: \(genre).\n" : ""
+            let trackPrice = "Track price: \(result.trackPrice).\n"
+            let trackExplicitness = (result.trackExplicitness) ? "Track explicit: Yes.\n" : "Track explicit: No.\n"
+            let trackNumber = "Track number: \(result.trackNumber).\n"
+            let trackTime = "Track time: \(result.trackTimeMillis).\n"
+            self.textView.text = "\(collectionPrice)\(collectionExplicitness)\(country)\(discCount)\(discNumber)\(genre)\(trackPrice)\(trackExplicitness)\(trackNumber)\(trackTime)"
         }
     }
     
