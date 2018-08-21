@@ -35,7 +35,6 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
         searchResultsCollection.dataSource = self
 
         if (searchOption != nil) {
-            print(searchOption.results)
             if let results = searchOption.results, results.count == 0 {
                 self.showError(error: "No results")
             }

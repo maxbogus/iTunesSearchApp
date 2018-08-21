@@ -19,29 +19,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Artist name:" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Dz-YG-z48">
-                                <rect key="frame" x="16" y="156" width="343" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Collection name:" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tcZ-ZZ-JuB">
-                                <rect key="frame" x="16" y="223" width="333" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Track name:" textAlignment="justified" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OD0-la-ZmG">
-                                <rect key="frame" x="16" y="292" width="333" height="21"/>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PEv-Zk-q8g">
-                                <rect key="frame" x="16" y="185" width="343" height="30"/>
+                                <rect key="frame" x="10" y="140" width="355" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="itN-I9-SWi"/>
+                                    <constraint firstAttribute="height" constant="30" id="qwe-F6-8NP"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Open artist in iTunes">
@@ -52,10 +34,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t6F-QJ-GKi">
-                                <rect key="frame" x="16" y="252" width="343" height="30"/>
+                                <rect key="frame" x="10" y="180" width="355" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="oh5-Rg-dgv"/>
+                                    <constraint firstAttribute="height" constant="30" id="2ur-0c-c84"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Open collection in iTunes">
@@ -66,10 +48,10 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5vl-lU-bPL">
-                                <rect key="frame" x="16" y="318" width="343" height="30"/>
+                                <rect key="frame" x="10" y="220" width="355" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="oj6-AJ-Gvf"/>
+                                    <constraint firstAttribute="height" constant="30" id="wL0-CI-X16"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <state key="normal" title="Open track in iTunes">
@@ -80,13 +62,13 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="a44-T4-mel">
-                                <rect key="frame" x="16" y="20" width="343" height="128"/>
+                                <rect key="frame" x="10" y="30" width="355" height="100"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="128" id="fVt-NI-8oA"/>
+                                    <constraint firstAttribute="height" constant="100" id="4vg-vJ-Flo"/>
                                 </constraints>
                             </imageView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Description" textAlignment="justified" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bix-m1-CwM">
-                                <rect key="frame" x="16" y="356" width="343" height="291"/>
+                                <rect key="frame" x="10" y="260" width="355" height="397"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="17"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
@@ -94,43 +76,30 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="a44-T4-mel" firstAttribute="leading" secondItem="tcZ-ZZ-JuB" secondAttribute="leading" id="1uf-eF-aEy"/>
-                            <constraint firstItem="t6F-QJ-GKi" firstAttribute="top" secondItem="tcZ-ZZ-JuB" secondAttribute="bottom" constant="8" symbolic="YES" id="4V2-yn-GYl"/>
-                            <constraint firstAttribute="bottom" secondItem="bix-m1-CwM" secondAttribute="bottom" constant="20" symbolic="YES" id="4iH-p2-dtz"/>
-                            <constraint firstItem="OD0-la-ZmG" firstAttribute="top" secondItem="t6F-QJ-GKi" secondAttribute="bottom" constant="10" id="6RA-bl-PEJ"/>
-                            <constraint firstItem="a44-T4-mel" firstAttribute="trailing" secondItem="t6F-QJ-GKi" secondAttribute="trailing" id="9nI-of-iTR"/>
-                            <constraint firstItem="a44-T4-mel" firstAttribute="trailing" secondItem="5vl-lU-bPL" secondAttribute="trailing" id="B5H-px-ApS"/>
-                            <constraint firstItem="a44-T4-mel" firstAttribute="trailing" secondItem="X8o-dB-Yq2" secondAttribute="trailingMargin" id="CP7-AY-qfe"/>
-                            <constraint firstItem="a44-T4-mel" firstAttribute="leading" secondItem="X8o-dB-Yq2" secondAttribute="leadingMargin" id="G5O-B1-cej"/>
-                            <constraint firstItem="a44-T4-mel" firstAttribute="trailing" secondItem="bix-m1-CwM" secondAttribute="trailing" id="GWe-qf-AFy"/>
-                            <constraint firstItem="4Dz-YG-z48" firstAttribute="top" secondItem="a44-T4-mel" secondAttribute="bottom" constant="8" symbolic="YES" id="IN0-Kd-WMg"/>
-                            <constraint firstItem="5vl-lU-bPL" firstAttribute="centerY" secondItem="X8o-dB-Yq2" secondAttribute="centerY" id="N2Q-bA-3p5"/>
-                            <constraint firstItem="5vl-lU-bPL" firstAttribute="top" secondItem="OD0-la-ZmG" secondAttribute="bottom" constant="5" id="QWN-Fl-QFs"/>
-                            <constraint firstItem="tcZ-ZZ-JuB" firstAttribute="top" secondItem="PEv-Zk-q8g" secondAttribute="bottom" constant="8" symbolic="YES" id="SlV-Ma-hen"/>
-                            <constraint firstItem="a44-T4-mel" firstAttribute="top" secondItem="e85-d1-nhb" secondAttribute="top" id="Xnj-oC-ggb"/>
-                            <constraint firstItem="a44-T4-mel" firstAttribute="leading" secondItem="bix-m1-CwM" secondAttribute="leading" id="Ymg-vG-f2N"/>
-                            <constraint firstItem="a44-T4-mel" firstAttribute="leading" secondItem="OD0-la-ZmG" secondAttribute="leading" id="ZY1-gO-Qh2"/>
-                            <constraint firstItem="a44-T4-mel" firstAttribute="leading" secondItem="PEv-Zk-q8g" secondAttribute="leading" id="auC-mk-jDz"/>
-                            <constraint firstItem="a44-T4-mel" firstAttribute="trailing" secondItem="PEv-Zk-q8g" secondAttribute="trailing" id="eQt-Mz-8Gg"/>
-                            <constraint firstItem="PEv-Zk-q8g" firstAttribute="top" secondItem="X8o-dB-Yq2" secondAttribute="top" constant="185" id="hlO-dg-Snt"/>
-                            <constraint firstItem="a44-T4-mel" firstAttribute="trailing" secondItem="4Dz-YG-z48" secondAttribute="trailing" id="iKT-oB-Qvo"/>
-                            <constraint firstItem="t6F-QJ-GKi" firstAttribute="top" secondItem="X8o-dB-Yq2" secondAttribute="top" constant="252" id="jtZ-Tz-rku"/>
-                            <constraint firstItem="bix-m1-CwM" firstAttribute="top" secondItem="5vl-lU-bPL" secondAttribute="bottom" constant="8" symbolic="YES" id="s5L-7G-9Wo"/>
-                            <constraint firstItem="a44-T4-mel" firstAttribute="leading" secondItem="t6F-QJ-GKi" secondAttribute="leading" id="vB0-FR-SGm"/>
-                            <constraint firstItem="a44-T4-mel" firstAttribute="leading" secondItem="5vl-lU-bPL" secondAttribute="leading" id="w3k-6A-q6z"/>
-                            <constraint firstItem="PEv-Zk-q8g" firstAttribute="top" secondItem="4Dz-YG-z48" secondAttribute="bottom" constant="8" symbolic="YES" id="wZO-7s-o8Y"/>
-                            <constraint firstItem="a44-T4-mel" firstAttribute="leading" secondItem="4Dz-YG-z48" secondAttribute="leading" id="yaO-X6-Zyf"/>
+                            <constraint firstItem="t6F-QJ-GKi" firstAttribute="top" secondItem="PEv-Zk-q8g" secondAttribute="bottom" constant="10" id="6yb-uW-DJU"/>
+                            <constraint firstItem="5vl-lU-bPL" firstAttribute="leading" secondItem="e85-d1-nhb" secondAttribute="leading" constant="10" id="88h-Pj-lmj"/>
+                            <constraint firstItem="e85-d1-nhb" firstAttribute="trailing" secondItem="5vl-lU-bPL" secondAttribute="trailing" constant="10" id="9Zh-PR-YhX"/>
+                            <constraint firstItem="e85-d1-nhb" firstAttribute="trailing" secondItem="a44-T4-mel" secondAttribute="trailing" constant="10" id="9mw-pR-Tx0"/>
+                            <constraint firstItem="bix-m1-CwM" firstAttribute="top" secondItem="5vl-lU-bPL" secondAttribute="bottom" constant="10" id="JSm-gO-SCd"/>
+                            <constraint firstItem="e85-d1-nhb" firstAttribute="trailing" secondItem="PEv-Zk-q8g" secondAttribute="trailing" constant="10" id="QpB-HK-Xcr"/>
+                            <constraint firstItem="PEv-Zk-q8g" firstAttribute="top" secondItem="a44-T4-mel" secondAttribute="bottom" constant="10" id="UHi-Eh-NP7"/>
+                            <constraint firstItem="e85-d1-nhb" firstAttribute="trailing" secondItem="bix-m1-CwM" secondAttribute="trailing" constant="10" id="UpH-Jq-j1E"/>
+                            <constraint firstItem="a44-T4-mel" firstAttribute="leading" secondItem="e85-d1-nhb" secondAttribute="leading" constant="10" id="cCt-t8-3ct"/>
+                            <constraint firstItem="t6F-QJ-GKi" firstAttribute="leading" secondItem="e85-d1-nhb" secondAttribute="leading" constant="10" id="iRO-1R-ufW"/>
+                            <constraint firstItem="PEv-Zk-q8g" firstAttribute="leading" secondItem="e85-d1-nhb" secondAttribute="leading" constant="10" id="jxJ-27-PJu"/>
+                            <constraint firstItem="e85-d1-nhb" firstAttribute="trailing" secondItem="t6F-QJ-GKi" secondAttribute="trailing" constant="10" id="kNm-Td-20Z"/>
+                            <constraint firstItem="a44-T4-mel" firstAttribute="top" secondItem="e85-d1-nhb" secondAttribute="top" constant="10" id="lQ9-h2-4q7"/>
+                            <constraint firstItem="e85-d1-nhb" firstAttribute="bottom" secondItem="bix-m1-CwM" secondAttribute="bottom" constant="10" id="mUz-kH-X1Q"/>
+                            <constraint firstItem="5vl-lU-bPL" firstAttribute="top" secondItem="t6F-QJ-GKi" secondAttribute="bottom" constant="10" id="nnb-28-KAu"/>
+                            <constraint firstItem="bix-m1-CwM" firstAttribute="leading" secondItem="e85-d1-nhb" secondAttribute="leading" constant="10" id="oic-Hq-gqE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="e85-d1-nhb"/>
                     </view>
                     <connections>
-                        <outlet property="artistName" destination="4Dz-YG-z48" id="vum-m5-XU4"/>
                         <outlet property="artistNameButton" destination="PEv-Zk-q8g" id="ehM-g0-1iQ"/>
                         <outlet property="artwork" destination="a44-T4-mel" id="Psv-7K-xqF"/>
-                        <outlet property="collectionName" destination="tcZ-ZZ-JuB" id="Vlc-IB-RDR"/>
                         <outlet property="collectionNameButton" destination="t6F-QJ-GKi" id="1Ve-dn-9bd"/>
                         <outlet property="textView" destination="bix-m1-CwM" id="ZFQ-WI-0x6"/>
-                        <outlet property="trackName" destination="OD0-la-ZmG" id="VFT-Ha-usj"/>
                         <outlet property="trackNameButton" destination="5vl-lU-bPL" id="pEF-KN-zaJ"/>
                     </connections>
                 </viewController>
