@@ -26,7 +26,7 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
     var dataController: DataController!
     var fetchedResultsController:NSFetchedResultsController<SearchOption>!
 
-    let listOfCountries = ["GA": "Gabon", "RU": "Russian Federation", "US": "United States of America"]
+    let listOfCountries = ["GB": "United Kingdom", "RU": "Russian Federation", "US": "United States of America"]
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -72,6 +72,18 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         }
     }
     
+    fileprivate func showError(message: String) {
+        DispatchQueue.main.async {
+            let alert = UIAlertController(title: "Error", message: "\(message)", preferredStyle: UIAlertControllerStyle.alert)
+            
+            // add an action (button)
+            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+            
+            // show the alert
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+    
     fileprivate func setUpFetchedResultsController() {
         let fetchRequest:NSFetchRequest<SearchOption> = SearchOption.fetchRequest()
         let sortDescriptor = NSSortDescriptor(key: "creationDate", ascending: false)
@@ -109,13 +121,9 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
                 }
                 self.setupView(status: true)
             } else {
-                let alert = UIAlertController(title: "Error", message: "\(String(describing: error))", preferredStyle: UIAlertControllerStyle.alert)
-                
-                // add an action (button)
-                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                
-                // show the alert
-                self.present(alert, animated: true, completion: nil)
+                if let error = error {
+                    self.showError(message: error)
+                }
                 self.setupView(status: true)
             }
         }
