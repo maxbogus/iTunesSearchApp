@@ -33,7 +33,7 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
 
         searchResultsCollection.delegate = self
         searchResultsCollection.dataSource = self
-
+        
         if (searchOption != nil) {
             if let results = searchOption.results, results.count == 0 {
                 self.showError(error: "No results")
@@ -73,6 +73,7 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
         } catch {
             fatalError("The fetch couldn't be performed \(error.localizedDescription)")
         }
+        searchResultsCollection?.reloadData()
     }
     
     private func showError(error: String) {

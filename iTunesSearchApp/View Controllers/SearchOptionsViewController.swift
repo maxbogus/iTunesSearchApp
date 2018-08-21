@@ -117,7 +117,8 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
                 if let results = results, let count = resultsCount {
                     let row = (self.countryIndex != nil) ? self.countryIndex.row : 0
                     self.saveSearch(limit: limit, country: country, term: escapedString!, explicitness: explicitness, row: row)
-                    self.saveResults(results: results, count: count, term: term)
+                    let convertedLimit = Int16(limit)
+                    self.saveResults(results: results, count: count, term: term, limit: convertedLimit, country: country, explicitness: explicitness)
                 }
                 self.setupView(status: true)
             } else {
@@ -140,9 +141,9 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         dataController.saveContext()
     }
     
-    func saveResults(results: Any, count: Int, term: String) {
+    func saveResults(results: Any, count: Int, term: String, limit: Int16, country: String, explicitness: Bool) {
         let results = iTunesResult.iTunesResultFromResults(results as! [[String : AnyObject]])
-        let option = findOption(term: term)
+        let option = findOption(term: term, limit: limit, explicitness: explicitness, country: country)
         for result in results {
             let searchResult = SearchResult(context: dataController.viewContext)
             if let artistId = result.artistId, let collectionExplicitness = result.collectionExplicitness, let collectionPrice = result.collectionPrice, let discNumber = result.discNumber, let collectionId = result.collectionId, let discCount = result.discCount, let trackCount = result.trackCount, let trackExplicitness = result.trackExplicitness, let trackId = result.trackId, let trackPrice = result.trackPrice, let trackTimeMillis = result.trackTimeMillis, let trackNumber = result.trackNumber {
@@ -188,12 +189,11 @@ class SearchOptionsViewController: UIViewController, UITextFieldDelegate, UITabl
         }
     }
     
-    private func findOption(term: String) -> SearchOption? {
-        let predicate = NSPredicate(format: "term == %@", term)
+    private func findOption(term: String, limit: Int16, explicitness: Bool, country: String) -> SearchOption? {
+        let predicate = NSPredicate(format: "term == %@ AND limit == %i AND country == %@", term, limit, country)
         var searchOption: SearchOption?
         do {
             try searchOption = fetchSearchOption(predicate)
-            
         } catch {
             print("\(#function) error:\(error)")
         }
