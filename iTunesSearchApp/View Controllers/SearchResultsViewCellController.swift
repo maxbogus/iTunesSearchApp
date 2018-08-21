@@ -12,7 +12,7 @@ import CoreData
 
 class SearchResultsViewCellController: UICollectionViewCell {
     @IBOutlet var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet var descriptionLabel: UILabel!
+    @IBOutlet var descriptionText: UITextView!
     @IBOutlet var image: UIImageView!
 
 }

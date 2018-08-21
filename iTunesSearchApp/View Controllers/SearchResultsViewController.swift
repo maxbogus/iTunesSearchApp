@@ -136,11 +136,11 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
                 artistName = artist
             }
             
-            cell.descriptionLabel.text = "\(artistName) \(trackName)"
+            cell.descriptionText.text = "\(artistName)\n\(trackName)"
             
         } else {
             cell.image?.image = nil
-            cell.descriptionLabel.text = "no text"
+            cell.descriptionText.text = ""
         }
         cell.activityIndicator.stopAnimating()
         
