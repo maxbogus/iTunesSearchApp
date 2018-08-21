@@ -25,6 +25,14 @@ class SongInfoViewController: UIViewController {
         if let result = self.result {
             populateView(result: result)
         }
+        
+        if let url = result.artworkUrl100 {
+            if let imageUrl = URL(string: url) {
+                ImageLoader.image(for: imageUrl) { image in
+                    self.artwork.image = image
+                }
+            }
+        }
     }
     
     @IBAction func viewArtistInItunes(_ sender: Any) {

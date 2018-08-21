@@ -120,7 +120,14 @@ class SearchResultsViewController: UIViewController, UICollectionViewDelegate, U
         cell.activityIndicator.startAnimating()
         if fetchedResultsController != nil {
             let result: SearchResult = fetchedResultsController.object(at: indexPath)
-            cell.image?.image = nil
+            if let url = result.artworkUrl60 {
+                if let imageUrl = URL(string: url) {
+                    ImageLoader.image(for: imageUrl) { image in
+                        cell.image?.image = image
+                    }
+                }
+            }
+            
             var trackName: String = ""; var artistName: String = ""
             if let track: String = result.trackName {
                 trackName = track

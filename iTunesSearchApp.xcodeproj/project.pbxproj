@@ -28,6 +28,7 @@
 		4A7411632124B47B00624D60 /* SearchOption+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7411622124B47B00624D60 /* SearchOption+Extensions.swift */; };
 		4A7411652124B4A600624D60 /* SearchResult+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7411642124B4A600624D60 /* SearchResult+Extensions.swift */; };
 		4A92F6252117ADC200E67B70 /* iTunesResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A92F6242117ADC200E67B70 /* iTunesResult.swift */; };
+		4A9649E9212CB9FF00FFEE4F /* ImageLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9649E8212CB9FF00FFEE4F /* ImageLoader.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		4A7411622124B47B00624D60 /* SearchOption+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchOption+Extensions.swift"; sourceTree = "<group>"; };
 		4A7411642124B4A600624D60 /* SearchResult+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SearchResult+Extensions.swift"; sourceTree = "<group>"; };
 		4A92F6242117ADC200E67B70 /* iTunesResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTunesResult.swift; sourceTree = "<group>"; };
+		4A9649E8212CB9FF00FFEE4F /* ImageLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLoader.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -178,6 +180,7 @@
 				4A380E77210DC77A00742B1F /* DataController.swift */,
 				4A380E48210A5F5900742B1F /* iTunesSearchApp.xcdatamodeld */,
 				4A92F6242117ADC200E67B70 /* iTunesResult.swift */,
+				4A9649E8212CB9FF00FFEE4F /* ImageLoader.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -365,6 +368,7 @@
 				4A380E852113A19F00742B1F /* SearchOptionsViewController.swift in Sources */,
 				4A380E74210DC65B00742B1F /* GCDBlackBox.swift in Sources */,
 				4A380E44210A5F5900742B1F /* MainScreenViewController.swift in Sources */,
+				4A9649E9212CB9FF00FFEE4F /* ImageLoader.swift in Sources */,
 				4A380E4A210A5F5900742B1F /* iTunesSearchApp.xcdatamodeld in Sources */,
 				4A380E7D21110F4600742B1F /* iTunesClient.swift in Sources */,
 				4A380E42210A5F5900742B1F /* AppDelegate.swift in Sources */,
